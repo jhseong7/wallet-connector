@@ -1,0 +1,1187 @@
+<svg version="1.1" baseProfile="full" width="9624.0" height="1037.0" viewbox="0 0 9624 1037" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+[Config|+static instance: Config;+appName: string;+appLogoUrl: string;+jsonRpcUrl: string;+chainId: number;+initialize: (config: ConfigOptions) =&gt; void;+updateConfig: (config: ConfigOptions) =&gt; void|+static getInstance(): Config]
+[&lt;interface&gt;ConfigOptions|+appName: string;+appLogoUrl: string;+jsonRpcUrl: string;+chainId: number|]
+[CaverContractEncoder|+static instance: default;+caverInst: default;+encodeContract: (abi: IABIItem\[\], contractAddress?: string) =&gt; IContract|+static getInstance(): default]
+[IContractEncoder]&lt;:--[CaverContractEncoder]
+[Web3ContractEncoder|+static instance: default;+web3Inst: default;+encodeContract: (abi: IABIItem\[\], contractAddress?: string) =&gt; IContract|+static getInstance(): default]
+[IContractEncoder]&lt;:--[Web3ContractEncoder]
+[&lt;type&gt;Auth|+expiration_time: number;+request_key: string;+status: string;+err: string|]
+[&lt;type&gt;Result|+expiration_time: number;+request_key: string;+status: &quot;completed&quot; \| &quot;prepared&quot; \| &quot;error&quot; \| &quot;canceled&quot;;+result: { klaytn_address: string; }|]
+[CoinbaseConnector||+static getInstance(): default]
+[EthereumConnector]&lt;:-[CoinbaseConnector]
+[EthereumConnector|-web3Inst: default;+currentAddress: string;+chainId: string \| number;#static instance: default;#contractEncoder: IContractEncoder;#ethereum: Ethereum;#onAddressChangeCallback: (address: string) =&gt; void;#onChainChangeCallback: (chainId: string \| number) =&gt; void;+isUnlocked: () =&gt; Promise&lt;boolean&gt;;+activate: () =&gt; Promise&lt;boolean&gt;;+sign: (message: string) =&gt; Promise&lt;string&gt;;-sendTransactionRaw: (transaction: ITransactionDataRaw) =&gt; Promise&lt;string&gt;;+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;;+encodeContract: (abi: IABIItem\[\], contractAddress?: string) =&gt; IContract;+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void;+setOnChainChange: (callback: (chainId: string \| number) =&gt; void) =&gt; void;-setCurrentAddress: (address: string) =&gt; void;-setChainId: (chainId: string \| number) =&gt; void;+restoreState: (address: string, chaidId: string \| number) =&gt; Promise&lt;boolean&gt;|+static getInstance(): default;+static create(): default]
+[IWalletConnector]&lt;:--[EthereumConnector]
+[KaikasConnector|+hasExtension: () =&gt; boolean;+getInstallLink: () =&gt; string;+isUnlocked: () =&gt; Promise&lt;boolean&gt;|+static getInstance(): default;+static create(): default]
+[&lt;interface&gt;KaikasKlaytn|+isKaikas: boolean;+_kaikas: { isEnabled: () =&gt; boolean; isUnlocked: () =&gt; Promise&lt;boolean&gt;; }|]
+[&lt;interface&gt;KaikasInjectedWindow|+klaytn: KaikasKlaytn|]
+[KlaytnConnector]&lt;:-[KaikasConnector]
+[IExtensionConnector]&lt;:--[KaikasConnector]
+[Klaytn]&lt;:--[KaikasKlaytn]
+[Window]&lt;:--[KaikasInjectedWindow]
+[Window]&lt;:--[KaikasInjectedWindow]
+[KlaytnConnector|+currentAddress: string;+chainId: string \| number;#caverInst: default;#static instance: default;#contractEncoder: IContractEncoder;#onAddressChangeCallback: (address: string) =&gt; void;#onChainChangeCallback: (chainId: string \| number) =&gt; void;+isUnlocked: () =&gt; Promise&lt;boolean&gt;;+activate: () =&gt; Promise&lt;boolean&gt;;+sign: (message: string) =&gt; Promise&lt;string&gt;;-sendTransactionRaw: (transaction: ITransactionDataRaw) =&gt; Promise&lt;string&gt;;+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;;+encodeContract: (abi: IABIItem\[\], contractAddress?: string) =&gt; IContract;+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void;+setOnChainChange: (callback: (networkVersion: string \| number) =&gt; void) =&gt; void;-setCurrentAddress: (address: string) =&gt; void;-setChainId: (chainId: string \| number) =&gt; void;+restoreState: (address: string, chaidId: string \| number) =&gt; Promise&lt;boolean&gt;|+static getInstance(): default;+static create(): default]
+[IWalletConnector]&lt;:--[KlaytnConnector]
+[KlipConnector|+chainId: string \| number;+currentAddress: string;-contractEncoder: IContractEncoder;-bAppName: string;-static instance: default;+requestKey: string;+deeplink: string;+qrCode: string;+qrCodeSetCallback: (qrCode: string, validTime?: number) =&gt; void;+deeplinkSetCallback: (deeplink: string) =&gt; void;-activateIntervalHandler: NodeJS.Timer\[\];-transactionIntervalHandler: NodeJS.Timer\[\];#onAddressChangeCallback: (address: string) =&gt; void;#onChainChangeCallback: (chainId: string \| number) =&gt; void;+isUnlocked: () =&gt; Promise&lt;any&gt;;+activate: () =&gt; Promise&lt;boolean&gt;;+abortPendingActivation: () =&gt; void;+sign: (message: string) =&gt; Promise&lt;string&gt;;+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;;+abortPendingTransaction: () =&gt; void;+encodeContract: (abi: IABIItem\[\], contractAddress?: string) =&gt; IContract;-setRequestKey: (requestKey: string) =&gt; void;-clearLinkAndCode: () =&gt; void;-setCurrentAddress: (address: string) =&gt; void;-setChainId: (chainId: string \| number) =&gt; void;+setQrCodeSetCallback: (callback: (qrCode: string, validTime?: number) =&gt; void) =&gt; void;+setDeeplinkSetCallback: (callback: (deeplink: string) =&gt; void) =&gt; void;+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void;+setOnChainChange: (callback: (chainId: string \| number) =&gt; void) =&gt; void;+restoreState: (address: string, chaidId: string \| number) =&gt; Promise&lt;boolean&gt;|+static getInstance(): default;+static create(): default]
+[IWalletConnector]&lt;:--[KlipConnector]
+[IQRConnector]&lt;:--[KlipConnector]
+[IDeepLinkConnector]&lt;:--[KlipConnector]
+[MetamaskConnector|+hasExtension: () =&gt; boolean;+getInstallLink: () =&gt; &quot;https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/&quot; \| &quot;https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn&quot;;+isUnlocked: () =&gt; Promise&lt;boolean&gt;|+static getInstance(): default;+static create(): default]
+[EthereumConnector]&lt;:-[MetamaskConnector]
+[IExtensionConnector]&lt;:--[MetamaskConnector]
+[&lt;enumeration&gt;ChainType|NONE;ETHEREUM;KLAYTN;KLAYTN_TESTNET;POLYGON]
+[&lt;enumeration&gt;WalletProviderType|NONE;EXTENSION;QR_CODE;DEEP_LINK]
+[&lt;enumeration&gt;WalletType|NONE;METAMASK;KAIKAS;DCENT;KLIP;COINBASE]
+[&lt;interface&gt;IABIItemInput|+name: string;+type: string;+indexed: boolean|]
+[&lt;interface&gt;IABIItemOutput|+name: string;+type: string;+indexed: boolean|]
+[&lt;interface&gt;IABIItem|+inputs: IABIItemInput\[\];+name: string;+outputs: IABIItemOutput\[\];+stateMutability: string;+type: string|]
+[&lt;interface&gt;IContractMethod|+encodeABI: () =&gt; string|]
+[&lt;interface&gt;IContract|+methods: { \[functionName: string\]: (...args: (string \| number)\[\]) =&gt; IContractMethod; }|]
+[&lt;interface&gt;IContractEncoder|+encodeContract: (abi: IABIItem\[\], contractAddress?: string) =&gt; IContract|]
+[&lt;interface&gt;Ethereum|+request: (data: { method: string; data?: any\[\]; params?: any\[\]; }) =&gt; Promise&lt;any&gt;;+on: (event: string, callback: (error: any, result: any) =&gt; void) =&gt; void;+chainId: string \| number;+selectedAddress: string|]
+[&lt;interface&gt;EthereumInjectedWindow|+ethereum: Ethereum|]
+[IpcProvider]&lt;:--[Ethereum]
+[Window]&lt;:--[EthereumInjectedWindow]
+[Window]&lt;:--[EthereumInjectedWindow]
+[&lt;interface&gt;Klaytn|+enable: () =&gt; Promise&lt;string\[\]&gt;;+on: (event: string, callback: (error: any, result: any) =&gt; void) =&gt; void;+networkVersion: string \| number;+selectedAddress: string|]
+[&lt;interface&gt;KlaytnInjectedWindow|+klaytn: Klaytn|]
+[Window]&lt;:--[KlaytnInjectedWindow]
+[Window]&lt;:--[KlaytnInjectedWindow]
+[&lt;interface&gt;MetamaskEthereum|+isMetaMask: boolean;+_metamask: { isEnabled: () =&gt; boolean; isUnlocked: () =&gt; Promise&lt;boolean&gt;; }|]
+[&lt;interface&gt;MetamaskInjectedWindow|+ethereum: MetamaskEthereum|]
+[Ethereum]&lt;:--[MetamaskEthereum]
+[Window]&lt;:--[MetamaskInjectedWindow]
+[Window]&lt;:--[MetamaskInjectedWindow]
+[&lt;interface&gt;ITransactionDataRaw|+to: string;+value: string \| number;+gas: string \| number;+gasPrice: string \| number;+data: string;+nonce: number;+chainId: number;+hardfork: string;+common: any|]
+[&lt;interface&gt;ITransactionData|+to: string;+value: string \| number;+gas: string \| number;+gasPrice: string \| number;+functionName: string;+params: string \| number\[\];+abi: IABIItem\[\];+nonce: number;+chainId: number;+hardfork: string;+common: any|]
+[&lt;interface&gt;IWalletConnector|+chainId: string \| number;+currentAddress: string;+activate: () =&gt; Promise&lt;boolean&gt;;+sign: (message: string) =&gt; Promise&lt;string&gt;;+isUnlocked: () =&gt; Promise&lt;boolean&gt;;+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;;+encodeContract: (abi: IABIItem\[\], contractAddress?: string) =&gt; IContract;+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void;+setOnChainChange: (callback: (chainId: string \| number) =&gt; void) =&gt; void;+restoreState: (address: string, chaidId: string \| number) =&gt; Promise&lt;boolean&gt;|]
+[&lt;interface&gt;IQRConnector|+qrCode: string;+setQrCodeSetCallback: (callback: (qrCode: string, validTime?: number) =&gt; void) =&gt; void;+abortPendingActivation: () =&gt; void;+abortPendingTransaction: () =&gt; void|]
+[&lt;interface&gt;IDeepLinkConnector|+deeplink: string;+setDeeplinkSetCallback: (callback: (deeplink: string) =&gt; void) =&gt; void;+abortPendingActivation: () =&gt; void;+abortPendingTransaction: () =&gt; void|]
+[&lt;interface&gt;IExtensionConnector|+hasExtension: () =&gt; boolean;+getInstallLink: () =&gt; string|]
+[&lt;interface&gt;IWalletState|+address: string;+chainId: string \| number;+chainType: default;+walletType: default|]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+<g transform="translate(0.5, 0.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="1037.0" width="9624.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<g stroke-dasharray="6 6">
+<path d="M3204.5 150.1 L2987 240 L2987 470 L2987.0 470.0 " fill="none"></path>
+</g>
+<path d="M3206.5 155.0 L3204.5 150.1 L3202.5 145.2 L3216.8 145.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M3398.5 150.1 L3616 240 L3616 470 L3616.0 470.0 " fill="none"></path>
+</g>
+<path d="M3400.5 145.2 L3398.5 150.1 L3396.5 155.0 L3386.2 145.0 Z"></path>
+<path d="M4345.4 687.7 L4058.75 823 L4058.75 877 L4058.8 877.0 " fill="none"></path>
+<path d="M4347.7 692.5 L4345.4 687.7 L4343.2 682.9 L4357.5 682.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M5038.6 172.2 L4676.5 240 L4676.5 342.5 L4676.5 342.5 " fill="none"></path>
+</g>
+<path d="M5039.6 177.4 L5038.6 172.2 L5037.7 166.9 L5051.8 169.7 Z"></path>
+<path d="M5660.5 726.3 L5660.5 823 L5682.859550561798 843 L5682.9 843.0 " fill="none"></path>
+<path d="M5665.8 726.3 L5660.5 726.3 L5655.2 726.3 L5660.5 713.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9406.5 585.0 L9241.5 823 L5916.5 907.9992819187132 L5916.5 908.0 " fill="none"></path>
+</g>
+<path d="M9410.8 588.0 L9406.5 585.0 L9402.1 581.9 L9414.0 574.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M4166.0 180.8 L4166 240 L4166 474 L4166.0 474.0 " fill="none"></path>
+</g>
+<path d="M4171.3 180.8 L4166.0 180.8 L4160.7 180.8 L4166.0 167.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M8237.6 119.8 L7596.25 240 L7596.25 496.5 L7596.3 496.5 " fill="none"></path>
+</g>
+<path d="M8238.6 125.0 L8237.6 119.8 L8236.7 114.5 L8250.8 117.3 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M5611.4 218.0 L5660.5 240 L5660.5 350 L5660.5 350.0 " fill="none"></path>
+</g>
+<path d="M5613.6 213.1 L5611.4 218.0 L5609.2 222.8 L5599.2 212.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M5702.8 173.9 L6046.5 240 L6071.114065180103 260 L6071.1 260.0 " fill="none"></path>
+</g>
+<path d="M5703.9 168.7 L5702.8 173.9 L5701.8 179.1 L5689.8 171.4 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M6425.3 180.8 L6425.25 240 L6423.877787307033 260 L6423.9 260.0 " fill="none"></path>
+</g>
+<path d="M6430.6 180.8 L6425.3 180.8 L6419.9 180.8 L6425.3 167.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M7108.3 180.8 L7108.25 240 L6763.75 382.84743954480797 L6763.8 382.8 " fill="none"></path>
+</g>
+<path d="M7113.6 180.8 L7108.3 180.8 L7102.9 180.8 L7108.3 167.5 Z"></path>
+<path d="M5007.6 687.7 L5294.25 823 L6215 872.8990713959507 L6215.0 872.9 " fill="none"></path>
+<path d="M5009.8 682.9 L5007.6 687.7 L5005.3 692.5 L4995.5 682.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M9447.3 587.3 L9463.5 823 L7658 886.5890383854373 L7658.0 886.6 " fill="none"></path>
+</g>
+<path d="M9452.6 586.9 L9447.3 587.3 L9442.0 587.7 L9446.4 574.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M8999.5 138.8 L8999.5 240 L8999.5 451.5 L8999.5 451.5 " fill="none"></path>
+</g>
+<path d="M9004.8 138.8 L8999.5 138.8 L8994.2 138.8 L8999.5 125.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M8237.9 125.0 L7841.75 240 L7841.75 496.5 L7841.8 496.5 " fill="none"></path>
+</g>
+<path d="M8239.4 130.2 L8237.9 125.0 L8236.5 119.9 L8250.8 121.3 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M8254.1 132.7 L8085.25 240 L8085.25 496.5 L8085.3 496.5 " fill="none"></path>
+</g>
+<path d="M8257.0 137.2 L8254.1 132.7 L8251.3 128.2 L8265.4 125.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M8999.5 624.8 L8999.5 823 L9078.073033707866 854.5 L9078.1 854.5 " fill="none"></path>
+</g>
+<path d="M9004.8 624.8 L8999.5 624.8 L8994.2 624.8 L8999.5 611.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M8332.2 131.5 L8546 240 L8546 496.5 L8546.0 496.5 " fill="none"></path>
+</g>
+<path d="M8334.6 126.8 L8332.2 131.5 L8329.8 136.3 L8320.3 125.5 Z"></path>
+<g data-name="Config">
+<g fill="#eee8d5" stroke="#33322E" data-name="Config">
+<rect x="0.0" y="19.0" height="183.0" width="387.0" data-name="Config"></rect>
+<path d="M0.0 50.0 L387.0 50.0" fill="none" data-name="Config"></path>
+<path d="M0.0 171.0 L387.0 171.0" fill="none" data-name="Config"></path>
+</g>
+<g transform="translate(0, 19)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Config">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Config">
+<a id=".Config" xlink:href=""><text x="185.5" y="13.5" stroke="none" text-anchor="middle" data-name="Config">Config</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 50)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Config">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Config">
+<text x="0.0" y="13.5" stroke="none" data-name="Config">+static instance: Config</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Config">+appName: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Config">+appLogoUrl: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Config">+jsonRpcUrl: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Config">+chainId: number</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Config">+initialize: (config: ConfigOptions) =&gt; void</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Config">+updateConfig: (config: ConfigOptions) =&gt; void</text>
+
+</g>
+</g>
+<g transform="translate(0, 171)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Config">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Config">
+<text x="0.0" y="13.5" stroke="none" data-name="Config">+static getInstance(): Config</text>
+
+</g>
+</g>
+</g>
+<g data-name="ConfigOptions">
+<g fill="lightblue" stroke="#33322E" data-name="ConfigOptions">
+<rect x="427.0" y="53.0" height="115.0" width="172.0" data-name="ConfigOptions"></rect>
+<path d="M427.0 84.0 L599.0 84.0" fill="none" data-name="ConfigOptions"></path>
+<path d="M427.0 160.0 L599.0 160.0" fill="none" data-name="ConfigOptions"></path>
+</g>
+<g transform="translate(427, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ConfigOptions">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ConfigOptions">
+<a id=".ConfigOptions" xlink:href=""><text x="78.0" y="13.5" stroke="none" text-anchor="middle" data-name="ConfigOptions">ConfigOptions</text></a>
+
+</g>
+</g>
+<g transform="translate(427, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ConfigOptions">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ConfigOptions">
+<text x="0.0" y="13.5" stroke="none" data-name="ConfigOptions">+appName: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ConfigOptions">+appLogoUrl: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ConfigOptions">+jsonRpcUrl: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ConfigOptions">+chainId: number</text>
+
+</g>
+</g>
+<g transform="translate(427, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ConfigOptions">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ConfigOptions">
+
+</g>
+</g>
+</g>
+<g data-name="CaverContractEncoder">
+<g fill="#eee8d5" stroke="#33322E" data-name="CaverContractEncoder">
+<rect x="2693.0" y="470.0" height="123.0" width="589.0" data-name="CaverContractEncoder"></rect>
+<path d="M2693.0 501.0 L3282.0 501.0" fill="none" data-name="CaverContractEncoder"></path>
+<path d="M2693.0 562.0 L3282.0 562.0" fill="none" data-name="CaverContractEncoder"></path>
+</g>
+<g transform="translate(2693, 470)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CaverContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CaverContractEncoder">
+<a id=".CaverContractEncoder" xlink:href=""><text x="286.5" y="13.5" stroke="none" text-anchor="middle" data-name="CaverContractEncoder">CaverContractEncoder</text></a>
+
+</g>
+</g>
+<g transform="translate(2693, 501)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CaverContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CaverContractEncoder">
+<text x="0.0" y="13.5" stroke="none" data-name="CaverContractEncoder">+static instance: default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="CaverContractEncoder">+caverInst: default</text>
+<text x="0.0" y="43.5" stroke="none" data-name="CaverContractEncoder">+encodeContract: (abi: IABIItem[], contractAddress?: string) =&gt; IContract</text>
+
+</g>
+</g>
+<g transform="translate(2693, 562)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CaverContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CaverContractEncoder">
+<text x="0.0" y="13.5" stroke="none" data-name="CaverContractEncoder">+static getInstance(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="Web3ContractEncoder">
+<g fill="#eee8d5" stroke="#33322E" data-name="Web3ContractEncoder">
+<rect x="3322.0" y="470.0" height="123.0" width="589.0" data-name="Web3ContractEncoder"></rect>
+<path d="M3322.0 501.0 L3911.0 501.0" fill="none" data-name="Web3ContractEncoder"></path>
+<path d="M3322.0 562.0 L3911.0 562.0" fill="none" data-name="Web3ContractEncoder"></path>
+</g>
+<g transform="translate(3322, 470)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Web3ContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Web3ContractEncoder">
+<a id=".Web3ContractEncoder" xlink:href=""><text x="286.5" y="13.5" stroke="none" text-anchor="middle" data-name="Web3ContractEncoder">Web3ContractEncoder</text></a>
+
+</g>
+</g>
+<g transform="translate(3322, 501)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Web3ContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Web3ContractEncoder">
+<text x="0.0" y="13.5" stroke="none" data-name="Web3ContractEncoder">+static instance: default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Web3ContractEncoder">+web3Inst: default</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Web3ContractEncoder">+encodeContract: (abi: IABIItem[], contractAddress?: string) =&gt; IContract</text>
+
+</g>
+</g>
+<g transform="translate(3322, 562)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Web3ContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Web3ContractEncoder">
+<text x="0.0" y="13.5" stroke="none" data-name="Web3ContractEncoder">+static getInstance(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="Auth">
+<g fill="lightgray" stroke="#33322E" data-name="Auth">
+<rect x="639.0" y="53.0" height="115.0" width="217.0" data-name="Auth"></rect>
+<path d="M639.0 84.0 L856.0 84.0" fill="none" data-name="Auth"></path>
+<path d="M639.0 160.0 L856.0 160.0" fill="none" data-name="Auth"></path>
+</g>
+<g transform="translate(639, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Auth">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Auth">
+<a id=".Auth" xlink:href=""><text x="100.5" y="13.5" stroke="none" text-anchor="middle" data-name="Auth">Auth</text></a>
+
+</g>
+</g>
+<g transform="translate(639, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Auth">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Auth">
+<text x="0.0" y="13.5" stroke="none" data-name="Auth">+expiration_time: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Auth">+request_key: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Auth">+status: string</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Auth">+err: string</text>
+
+</g>
+</g>
+<g transform="translate(639, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Auth">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Auth">
+
+</g>
+</g>
+</g>
+<g data-name="Result">
+<g fill="lightgray" stroke="#33322E" data-name="Result">
+<rect x="896.0" y="45.0" height="130.0" width="441.0" data-name="Result"></rect>
+<path d="M896.0 76.0 L1337.0 76.0" fill="none" data-name="Result"></path>
+<path d="M896.0 167.0 L1337.0 167.0" fill="none" data-name="Result"></path>
+</g>
+<g transform="translate(896, 45)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Result">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Result">
+<a id=".Result" xlink:href=""><text x="212.5" y="13.5" stroke="none" text-anchor="middle" data-name="Result">Result</text></a>
+
+</g>
+</g>
+<g transform="translate(896, 76)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Result">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Result">
+<text x="0.0" y="13.5" stroke="none" data-name="Result">+expiration_time: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Result">+request_key: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Result">+status: &quot;completed&quot; | &quot;prepared&quot; | &quot;error&quot; | &quot;canceled&quot;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Result">+result: { klaytn_address: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Result">}</text>
+
+</g>
+</g>
+<g transform="translate(896, 167)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Result">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Result">
+
+</g>
+</g>
+</g>
+<g data-name="CoinbaseConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="CoinbaseConnector">
+<rect x="3938.0" y="877.0" height="70.0" width="242.0" data-name="CoinbaseConnector"></rect>
+<path d="M3938.0 908.0 L4180.0 908.0" fill="none" data-name="CoinbaseConnector"></path>
+<path d="M3938.0 916.0 L4180.0 916.0" fill="none" data-name="CoinbaseConnector"></path>
+</g>
+<g transform="translate(3938, 877)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CoinbaseConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CoinbaseConnector">
+<a id=".CoinbaseConnector" xlink:href=""><text x="113.0" y="13.5" stroke="none" text-anchor="middle" data-name="CoinbaseConnector">CoinbaseConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(3938, 908)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CoinbaseConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CoinbaseConnector">
+
+</g>
+</g>
+<g transform="translate(3938, 916)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CoinbaseConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CoinbaseConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="CoinbaseConnector">+static getInstance(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="EthereumConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="EthereumConnector">
+<rect x="4358.0" y="343.0" height="378.0" width="638.0" data-name="EthereumConnector"></rect>
+<path d="M4358.0 374.0 L4996.0 374.0" fill="none" data-name="EthereumConnector"></path>
+<path d="M4358.0 675.0 L4996.0 675.0" fill="none" data-name="EthereumConnector"></path>
+</g>
+<g transform="translate(4358, 343)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="EthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="EthereumConnector">
+<a id=".EthereumConnector" xlink:href=""><text x="311.0" y="13.5" stroke="none" text-anchor="middle" data-name="EthereumConnector">EthereumConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(4358, 374)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EthereumConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="EthereumConnector">-web3Inst: default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="EthereumConnector">+currentAddress: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="EthereumConnector">+chainId: string | number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="EthereumConnector">#static instance: default</text>
+<text x="0.0" y="73.5" stroke="none" data-name="EthereumConnector">#contractEncoder: IContractEncoder</text>
+<text x="0.0" y="88.5" stroke="none" data-name="EthereumConnector">#ethereum: Ethereum</text>
+<text x="0.0" y="103.5" stroke="none" data-name="EthereumConnector">#onAddressChangeCallback: (address: string) =&gt; void</text>
+<text x="0.0" y="118.5" stroke="none" data-name="EthereumConnector">#onChainChangeCallback: (chainId: string | number) =&gt; void</text>
+<text x="0.0" y="133.5" stroke="none" data-name="EthereumConnector">+isUnlocked: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="148.5" stroke="none" data-name="EthereumConnector">+activate: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="163.5" stroke="none" data-name="EthereumConnector">+sign: (message: string) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="178.5" stroke="none" data-name="EthereumConnector">-sendTransactionRaw: (transaction: ITransactionDataRaw) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="193.5" stroke="none" data-name="EthereumConnector">+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="208.5" stroke="none" data-name="EthereumConnector">+encodeContract: (abi: IABIItem[], contractAddress?: string) =&gt; IContract</text>
+<text x="0.0" y="223.5" stroke="none" data-name="EthereumConnector">+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void</text>
+<text x="0.0" y="238.5" stroke="none" data-name="EthereumConnector">+setOnChainChange: (callback: (chainId: string | number) =&gt; void) =&gt; void</text>
+<text x="0.0" y="253.5" stroke="none" data-name="EthereumConnector">-setCurrentAddress: (address: string) =&gt; void</text>
+<text x="0.0" y="268.5" stroke="none" data-name="EthereumConnector">-setChainId: (chainId: string | number) =&gt; void</text>
+<text x="0.0" y="283.5" stroke="none" data-name="EthereumConnector">+restoreState: (address: string, chaidId: string | number) =&gt; Promise&lt;boolean&gt;</text>
+
+</g>
+</g>
+<g transform="translate(4358, 675)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EthereumConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="EthereumConnector">+static getInstance(): default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="EthereumConnector">+static create(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="KaikasConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="KaikasConnector">
+<rect x="5604.0" y="843.0" height="138.0" width="313.0" data-name="KaikasConnector"></rect>
+<path d="M5604.0 874.0 L5917.0 874.0" fill="none" data-name="KaikasConnector"></path>
+<path d="M5604.0 935.0 L5917.0 935.0" fill="none" data-name="KaikasConnector"></path>
+</g>
+<g transform="translate(5604, 843)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KaikasConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KaikasConnector">
+<a id=".KaikasConnector" xlink:href=""><text x="148.5" y="13.5" stroke="none" text-anchor="middle" data-name="KaikasConnector">KaikasConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(5604, 874)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasConnector">+hasExtension: () =&gt; boolean</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KaikasConnector">+getInstallLink: () =&gt; string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="KaikasConnector">+isUnlocked: () =&gt; Promise&lt;boolean&gt;</text>
+
+</g>
+</g>
+<g transform="translate(5604, 935)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasConnector">+static getInstance(): default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KaikasConnector">+static create(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="KaikasKlaytn">
+<g fill="lightblue" stroke="#33322E" data-name="KaikasKlaytn">
+<rect x="4015.0" y="474.0" height="115.0" width="303.0" data-name="KaikasKlaytn"></rect>
+<path d="M4015.0 505.0 L4318.0 505.0" fill="none" data-name="KaikasKlaytn"></path>
+<path d="M4015.0 581.0 L4318.0 581.0" fill="none" data-name="KaikasKlaytn"></path>
+</g>
+<g transform="translate(4015, 474)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KaikasKlaytn">
+<a id=".KaikasKlaytn" xlink:href=""><text x="143.5" y="13.5" stroke="none" text-anchor="middle" data-name="KaikasKlaytn">KaikasKlaytn</text></a>
+
+</g>
+</g>
+<g transform="translate(4015, 505)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasKlaytn">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasKlaytn">+isKaikas: boolean</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KaikasKlaytn">+_kaikas: { isEnabled: () =&gt; boolean</text>
+<text x="0.0" y="43.5" stroke="none" data-name="KaikasKlaytn">isUnlocked: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="KaikasKlaytn">}</text>
+
+</g>
+</g>
+<g transform="translate(4015, 581)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" data-name="KaikasKlaytn">
+
+</g>
+</g>
+</g>
+<g data-name="KaikasInjectedWindow">
+<g fill="lightblue" stroke="#33322E" data-name="KaikasInjectedWindow">
+<rect x="7499.0" y="497.0" height="70.0" width="194.0" data-name="KaikasInjectedWindow"></rect>
+<path d="M7499.0 528.0 L7693.0 528.0" fill="none" data-name="KaikasInjectedWindow"></path>
+<path d="M7499.0 559.0 L7693.0 559.0" fill="none" data-name="KaikasInjectedWindow"></path>
+</g>
+<g transform="translate(7499, 497)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KaikasInjectedWindow">
+<a id=".KaikasInjectedWindow" xlink:href=""><text x="89.0" y="13.5" stroke="none" text-anchor="middle" data-name="KaikasInjectedWindow">KaikasInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(7499, 528)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasInjectedWindow">+klaytn: KaikasKlaytn</text>
+
+</g>
+</g>
+<g transform="translate(7499, 559)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="KaikasInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="KlaytnConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="KlaytnConnector">
+<rect x="5327.0" y="350.0" height="363.0" width="667.0" data-name="KlaytnConnector"></rect>
+<path d="M5327.0 381.0 L5994.0 381.0" fill="none" data-name="KlaytnConnector"></path>
+<path d="M5327.0 667.0 L5994.0 667.0" fill="none" data-name="KlaytnConnector"></path>
+</g>
+<g transform="translate(5327, 350)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KlaytnConnector">
+<a id=".KlaytnConnector" xlink:href=""><text x="325.5" y="13.5" stroke="none" text-anchor="middle" data-name="KlaytnConnector">KlaytnConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(5327, 381)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlaytnConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlaytnConnector">+currentAddress: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlaytnConnector">+chainId: string | number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="KlaytnConnector">#caverInst: default</text>
+<text x="0.0" y="58.5" stroke="none" data-name="KlaytnConnector">#static instance: default</text>
+<text x="0.0" y="73.5" stroke="none" data-name="KlaytnConnector">#contractEncoder: IContractEncoder</text>
+<text x="0.0" y="88.5" stroke="none" data-name="KlaytnConnector">#onAddressChangeCallback: (address: string) =&gt; void</text>
+<text x="0.0" y="103.5" stroke="none" data-name="KlaytnConnector">#onChainChangeCallback: (chainId: string | number) =&gt; void</text>
+<text x="0.0" y="118.5" stroke="none" data-name="KlaytnConnector">+isUnlocked: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="133.5" stroke="none" data-name="KlaytnConnector">+activate: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="148.5" stroke="none" data-name="KlaytnConnector">+sign: (message: string) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="163.5" stroke="none" data-name="KlaytnConnector">-sendTransactionRaw: (transaction: ITransactionDataRaw) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="178.5" stroke="none" data-name="KlaytnConnector">+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="193.5" stroke="none" data-name="KlaytnConnector">+encodeContract: (abi: IABIItem[], contractAddress?: string) =&gt; IContract</text>
+<text x="0.0" y="208.5" stroke="none" data-name="KlaytnConnector">+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void</text>
+<text x="0.0" y="223.5" stroke="none" data-name="KlaytnConnector">+setOnChainChange: (callback: (networkVersion: string | number) =&gt; void) =&gt; void</text>
+<text x="0.0" y="238.5" stroke="none" data-name="KlaytnConnector">-setCurrentAddress: (address: string) =&gt; void</text>
+<text x="0.0" y="253.5" stroke="none" data-name="KlaytnConnector">-setChainId: (chainId: string | number) =&gt; void</text>
+<text x="0.0" y="268.5" stroke="none" data-name="KlaytnConnector">+restoreState: (address: string, chaidId: string | number) =&gt; Promise&lt;boolean&gt;</text>
+
+</g>
+</g>
+<g transform="translate(5327, 667)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlaytnConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlaytnConnector">+static getInstance(): default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlaytnConnector">+static create(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="KlipConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="KlipConnector">
+<rect x="6047.0" y="260.0" height="543.0" width="717.0" data-name="KlipConnector"></rect>
+<path d="M6047.0 291.0 L6764.0 291.0" fill="none" data-name="KlipConnector"></path>
+<path d="M6047.0 757.0 L6764.0 757.0" fill="none" data-name="KlipConnector"></path>
+</g>
+<g transform="translate(6047, 260)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KlipConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KlipConnector">
+<a id=".KlipConnector" xlink:href=""><text x="350.5" y="13.5" stroke="none" text-anchor="middle" data-name="KlipConnector">KlipConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(6047, 291)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlipConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlipConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlipConnector">+chainId: string | number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlipConnector">+currentAddress: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="KlipConnector">-contractEncoder: IContractEncoder</text>
+<text x="0.0" y="58.5" stroke="none" data-name="KlipConnector">-bAppName: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="KlipConnector">-static instance: default</text>
+<text x="0.0" y="88.5" stroke="none" data-name="KlipConnector">+requestKey: string</text>
+<text x="0.0" y="103.5" stroke="none" data-name="KlipConnector">+deeplink: string</text>
+<text x="0.0" y="118.5" stroke="none" data-name="KlipConnector">+qrCode: string</text>
+<text x="0.0" y="133.5" stroke="none" data-name="KlipConnector">+qrCodeSetCallback: (qrCode: string, validTime?: number) =&gt; void</text>
+<text x="0.0" y="148.5" stroke="none" data-name="KlipConnector">+deeplinkSetCallback: (deeplink: string) =&gt; void</text>
+<text x="0.0" y="163.5" stroke="none" data-name="KlipConnector">-activateIntervalHandler: NodeJS.Timer[]</text>
+<text x="0.0" y="178.5" stroke="none" data-name="KlipConnector">-transactionIntervalHandler: NodeJS.Timer[]</text>
+<text x="0.0" y="193.5" stroke="none" data-name="KlipConnector">#onAddressChangeCallback: (address: string) =&gt; void</text>
+<text x="0.0" y="208.5" stroke="none" data-name="KlipConnector">#onChainChangeCallback: (chainId: string | number) =&gt; void</text>
+<text x="0.0" y="223.5" stroke="none" data-name="KlipConnector">+isUnlocked: () =&gt; Promise&lt;any&gt;</text>
+<text x="0.0" y="238.5" stroke="none" data-name="KlipConnector">+activate: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="253.5" stroke="none" data-name="KlipConnector">+abortPendingActivation: () =&gt; void</text>
+<text x="0.0" y="268.5" stroke="none" data-name="KlipConnector">+sign: (message: string) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="283.5" stroke="none" data-name="KlipConnector">+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="298.5" stroke="none" data-name="KlipConnector">+abortPendingTransaction: () =&gt; void</text>
+<text x="0.0" y="313.5" stroke="none" data-name="KlipConnector">+encodeContract: (abi: IABIItem[], contractAddress?: string) =&gt; IContract</text>
+<text x="0.0" y="328.5" stroke="none" data-name="KlipConnector">-setRequestKey: (requestKey: string) =&gt; void</text>
+<text x="0.0" y="343.5" stroke="none" data-name="KlipConnector">-clearLinkAndCode: () =&gt; void</text>
+<text x="0.0" y="358.5" stroke="none" data-name="KlipConnector">-setCurrentAddress: (address: string) =&gt; void</text>
+<text x="0.0" y="373.5" stroke="none" data-name="KlipConnector">-setChainId: (chainId: string | number) =&gt; void</text>
+<text x="0.0" y="388.5" stroke="none" data-name="KlipConnector">+setQrCodeSetCallback: (callback: (qrCode: string, validTime?: number) =&gt; void) =&gt; void</text>
+<text x="0.0" y="403.5" stroke="none" data-name="KlipConnector">+setDeeplinkSetCallback: (callback: (deeplink: string) =&gt; void) =&gt; void</text>
+<text x="0.0" y="418.5" stroke="none" data-name="KlipConnector">+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void</text>
+<text x="0.0" y="433.5" stroke="none" data-name="KlipConnector">+setOnChainChange: (callback: (chainId: string | number) =&gt; void) =&gt; void</text>
+<text x="0.0" y="448.5" stroke="none" data-name="KlipConnector">+restoreState: (address: string, chaidId: string | number) =&gt; Promise&lt;boolean&gt;</text>
+
+</g>
+</g>
+<g transform="translate(6047, 757)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlipConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlipConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlipConnector">+static getInstance(): default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlipConnector">+static create(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="MetamaskConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="MetamaskConnector">
+<rect x="6215.0" y="843.0" height="138.0" width="1443.0" data-name="MetamaskConnector"></rect>
+<path d="M6215.0 874.0 L7658.0 874.0" fill="none" data-name="MetamaskConnector"></path>
+<path d="M6215.0 935.0 L7658.0 935.0" fill="none" data-name="MetamaskConnector"></path>
+</g>
+<g transform="translate(6215, 843)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MetamaskConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetamaskConnector">
+<a id=".MetamaskConnector" xlink:href=""><text x="713.5" y="13.5" stroke="none" text-anchor="middle" data-name="MetamaskConnector">MetamaskConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(6215, 874)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskConnector">+hasExtension: () =&gt; boolean</text>
+<text x="0.0" y="28.5" stroke="none" data-name="MetamaskConnector">+getInstallLink: () =&gt; &quot;https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/&quot; | &quot;https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn&quot;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="MetamaskConnector">+isUnlocked: () =&gt; Promise&lt;boolean&gt;</text>
+
+</g>
+</g>
+<g transform="translate(6215, 935)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskConnector">+static getInstance(): default</text>
+<text x="0.0" y="28.5" stroke="none" data-name="MetamaskConnector">+static create(): default</text>
+
+</g>
+</g>
+</g>
+<g data-name="IABIItemInput">
+<g fill="lightblue" stroke="#33322E" data-name="IABIItemInput">
+<rect x="1377.0" y="60.0" height="100.0" width="163.0" data-name="IABIItemInput"></rect>
+<path d="M1377.0 91.0 L1540.0 91.0" fill="none" data-name="IABIItemInput"></path>
+<path d="M1377.0 152.0 L1540.0 152.0" fill="none" data-name="IABIItemInput"></path>
+</g>
+<g transform="translate(1377, 60)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItemInput">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IABIItemInput">
+<a id=".IABIItemInput" xlink:href=""><text x="73.5" y="13.5" stroke="none" text-anchor="middle" data-name="IABIItemInput">IABIItemInput</text></a>
+
+</g>
+</g>
+<g transform="translate(1377, 91)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItemInput">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IABIItemInput">
+<text x="0.0" y="13.5" stroke="none" data-name="IABIItemInput">+name: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IABIItemInput">+type: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IABIItemInput">+indexed: boolean</text>
+
+</g>
+</g>
+<g transform="translate(1377, 152)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItemInput">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IABIItemInput">
+
+</g>
+</g>
+</g>
+<g data-name="IABIItemOutput">
+<g fill="lightblue" stroke="#33322E" data-name="IABIItemOutput">
+<rect x="1580.0" y="60.0" height="100.0" width="163.0" data-name="IABIItemOutput"></rect>
+<path d="M1580.0 91.0 L1743.0 91.0" fill="none" data-name="IABIItemOutput"></path>
+<path d="M1580.0 152.0 L1743.0 152.0" fill="none" data-name="IABIItemOutput"></path>
+</g>
+<g transform="translate(1580, 60)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItemOutput">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IABIItemOutput">
+<a id=".IABIItemOutput" xlink:href=""><text x="73.5" y="13.5" stroke="none" text-anchor="middle" data-name="IABIItemOutput">IABIItemOutput</text></a>
+
+</g>
+</g>
+<g transform="translate(1580, 91)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItemOutput">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IABIItemOutput">
+<text x="0.0" y="13.5" stroke="none" data-name="IABIItemOutput">+name: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IABIItemOutput">+type: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IABIItemOutput">+indexed: boolean</text>
+
+</g>
+</g>
+<g transform="translate(1580, 152)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItemOutput">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IABIItemOutput">
+
+</g>
+</g>
+</g>
+<g data-name="IABIItem">
+<g fill="lightblue" stroke="#33322E" data-name="IABIItem">
+<rect x="1783.0" y="45.0" height="130.0" width="224.0" data-name="IABIItem"></rect>
+<path d="M1783.0 76.0 L2007.0 76.0" fill="none" data-name="IABIItem"></path>
+<path d="M1783.0 167.0 L2007.0 167.0" fill="none" data-name="IABIItem"></path>
+</g>
+<g transform="translate(1783, 45)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItem">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IABIItem">
+<a id=".IABIItem" xlink:href=""><text x="104.0" y="13.5" stroke="none" text-anchor="middle" data-name="IABIItem">IABIItem</text></a>
+
+</g>
+</g>
+<g transform="translate(1783, 76)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItem">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IABIItem">
+<text x="0.0" y="13.5" stroke="none" data-name="IABIItem">+inputs: IABIItemInput[]</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IABIItem">+name: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IABIItem">+outputs: IABIItemOutput[]</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IABIItem">+stateMutability: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="IABIItem">+type: string</text>
+
+</g>
+</g>
+<g transform="translate(1783, 167)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IABIItem">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IABIItem">
+
+</g>
+</g>
+</g>
+<g data-name="IContractMethod">
+<g fill="lightblue" stroke="#33322E" data-name="IContractMethod">
+<rect x="2047.0" y="75.0" height="70.0" width="208.0" data-name="IContractMethod"></rect>
+<path d="M2047.0 106.0 L2255.0 106.0" fill="none" data-name="IContractMethod"></path>
+<path d="M2047.0 137.0 L2255.0 137.0" fill="none" data-name="IContractMethod"></path>
+</g>
+<g transform="translate(2047, 75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContractMethod">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IContractMethod">
+<a id=".IContractMethod" xlink:href=""><text x="96.0" y="13.5" stroke="none" text-anchor="middle" data-name="IContractMethod">IContractMethod</text></a>
+
+</g>
+</g>
+<g transform="translate(2047, 106)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContractMethod">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IContractMethod">
+<text x="0.0" y="13.5" stroke="none" data-name="IContractMethod">+encodeABI: () =&gt; string</text>
+
+</g>
+</g>
+<g transform="translate(2047, 137)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContractMethod">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IContractMethod">
+
+</g>
+</g>
+</g>
+<g data-name="IContract">
+<g fill="lightblue" stroke="#33322E" data-name="IContract">
+<rect x="2295.0" y="68.0" height="85.0" width="672.0" data-name="IContract"></rect>
+<path d="M2295.0 99.0 L2967.0 99.0" fill="none" data-name="IContract"></path>
+<path d="M2295.0 145.0 L2967.0 145.0" fill="none" data-name="IContract"></path>
+</g>
+<g transform="translate(2295, 68)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContract">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IContract">
+<a id=".IContract" xlink:href=""><text x="328.0" y="13.5" stroke="none" text-anchor="middle" data-name="IContract">IContract</text></a>
+
+</g>
+</g>
+<g transform="translate(2295, 99)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContract">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IContract">
+<text x="0.0" y="13.5" stroke="none" data-name="IContract">+methods: { [functionName: string]: (...args: (string | number)[]) =&gt; IContractMethod</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IContract">}</text>
+
+</g>
+</g>
+<g transform="translate(2295, 145)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContract">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IContract">
+
+</g>
+</g>
+</g>
+<g data-name="IContractEncoder">
+<g fill="lightblue" stroke="#33322E" data-name="IContractEncoder">
+<rect x="3007.0" y="75.0" height="70.0" width="589.0" data-name="IContractEncoder"></rect>
+<path d="M3007.0 106.0 L3596.0 106.0" fill="none" data-name="IContractEncoder"></path>
+<path d="M3007.0 137.0 L3596.0 137.0" fill="none" data-name="IContractEncoder"></path>
+</g>
+<g transform="translate(3007, 75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IContractEncoder">
+<a id=".IContractEncoder" xlink:href=""><text x="286.5" y="13.5" stroke="none" text-anchor="middle" data-name="IContractEncoder">IContractEncoder</text></a>
+
+</g>
+</g>
+<g transform="translate(3007, 106)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IContractEncoder">
+<text x="0.0" y="13.5" stroke="none" data-name="IContractEncoder">+encodeContract: (abi: IABIItem[], contractAddress?: string) =&gt; IContract</text>
+
+</g>
+</g>
+<g transform="translate(3007, 137)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IContractEncoder">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IContractEncoder">
+
+</g>
+</g>
+</g>
+<g data-name="Ethereum">
+<g fill="lightblue" stroke="#33322E" data-name="Ethereum">
+<rect x="8720.0" y="452.0" height="160.0" width="559.0" data-name="Ethereum"></rect>
+<path d="M8720.0 483.0 L9279.0 483.0" fill="none" data-name="Ethereum"></path>
+<path d="M8720.0 604.0 L9279.0 604.0" fill="none" data-name="Ethereum"></path>
+</g>
+<g transform="translate(8720, 452)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Ethereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Ethereum">
+<a id=".Ethereum" xlink:href=""><text x="271.5" y="13.5" stroke="none" text-anchor="middle" data-name="Ethereum">Ethereum</text></a>
+
+</g>
+</g>
+<g transform="translate(8720, 483)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Ethereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Ethereum">
+<text x="0.0" y="13.5" stroke="none" data-name="Ethereum">+request: (data: { method: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Ethereum">data?: any[]</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Ethereum">params?: any[]</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Ethereum">}) =&gt; Promise&lt;any&gt;</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Ethereum">+on: (event: string, callback: (error: any, result: any) =&gt; void) =&gt; void</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Ethereum">+chainId: string | number</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Ethereum">+selectedAddress: string</text>
+
+</g>
+</g>
+<g transform="translate(8720, 604)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Ethereum">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Ethereum">
+
+</g>
+</g>
+</g>
+<g data-name="EthereumInjectedWindow">
+<g fill="lightblue" stroke="#33322E" data-name="EthereumInjectedWindow">
+<rect x="7733.0" y="497.0" height="70.0" width="217.0" data-name="EthereumInjectedWindow"></rect>
+<path d="M7733.0 528.0 L7950.0 528.0" fill="none" data-name="EthereumInjectedWindow"></path>
+<path d="M7733.0 559.0 L7950.0 559.0" fill="none" data-name="EthereumInjectedWindow"></path>
+</g>
+<g transform="translate(7733, 497)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="EthereumInjectedWindow">
+<a id=".EthereumInjectedWindow" xlink:href=""><text x="100.5" y="13.5" stroke="none" text-anchor="middle" data-name="EthereumInjectedWindow">EthereumInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(7733, 528)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EthereumInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="EthereumInjectedWindow">+ethereum: Ethereum</text>
+
+</g>
+</g>
+<g transform="translate(7733, 559)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="EthereumInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="Klaytn">
+<g fill="lightblue" stroke="#33322E" data-name="Klaytn">
+<rect x="3887.0" y="53.0" height="115.0" width="559.0" data-name="Klaytn"></rect>
+<path d="M3887.0 84.0 L4446.0 84.0" fill="none" data-name="Klaytn"></path>
+<path d="M3887.0 160.0 L4446.0 160.0" fill="none" data-name="Klaytn"></path>
+</g>
+<g transform="translate(3887, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Klaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Klaytn">
+<a id=".Klaytn" xlink:href=""><text x="271.5" y="13.5" stroke="none" text-anchor="middle" data-name="Klaytn">Klaytn</text></a>
+
+</g>
+</g>
+<g transform="translate(3887, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Klaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Klaytn">
+<text x="0.0" y="13.5" stroke="none" data-name="Klaytn">+enable: () =&gt; Promise&lt;string[]&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Klaytn">+on: (event: string, callback: (error: any, result: any) =&gt; void) =&gt; void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Klaytn">+networkVersion: string | number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Klaytn">+selectedAddress: string</text>
+
+</g>
+</g>
+<g transform="translate(3887, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Klaytn">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Klaytn">
+
+</g>
+</g>
+</g>
+<g data-name="KlaytnInjectedWindow">
+<g fill="lightblue" stroke="#33322E" data-name="KlaytnInjectedWindow">
+<rect x="7990.0" y="497.0" height="70.0" width="190.0" data-name="KlaytnInjectedWindow"></rect>
+<path d="M7990.0 528.0 L8180.0 528.0" fill="none" data-name="KlaytnInjectedWindow"></path>
+<path d="M7990.0 559.0 L8180.0 559.0" fill="none" data-name="KlaytnInjectedWindow"></path>
+</g>
+<g transform="translate(7990, 497)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KlaytnInjectedWindow">
+<a id=".KlaytnInjectedWindow" xlink:href=""><text x="87.0" y="13.5" stroke="none" text-anchor="middle" data-name="KlaytnInjectedWindow">KlaytnInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(7990, 528)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlaytnInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="KlaytnInjectedWindow">+klaytn: Klaytn</text>
+
+</g>
+</g>
+<g transform="translate(7990, 559)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="KlaytnInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="MetamaskEthereum">
+<g fill="lightblue" stroke="#33322E" data-name="MetamaskEthereum">
+<rect x="9056.0" y="855.0" height="115.0" width="332.0" data-name="MetamaskEthereum"></rect>
+<path d="M9056.0 886.0 L9388.0 886.0" fill="none" data-name="MetamaskEthereum"></path>
+<path d="M9056.0 962.0 L9388.0 962.0" fill="none" data-name="MetamaskEthereum"></path>
+</g>
+<g transform="translate(9056, 855)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskEthereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetamaskEthereum">
+<a id=".MetamaskEthereum" xlink:href=""><text x="158.0" y="13.5" stroke="none" text-anchor="middle" data-name="MetamaskEthereum">MetamaskEthereum</text></a>
+
+</g>
+</g>
+<g transform="translate(9056, 886)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskEthereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskEthereum">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskEthereum">+isMetaMask: boolean</text>
+<text x="0.0" y="28.5" stroke="none" data-name="MetamaskEthereum">+_metamask: { isEnabled: () =&gt; boolean</text>
+<text x="0.0" y="43.5" stroke="none" data-name="MetamaskEthereum">isUnlocked: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="MetamaskEthereum">}</text>
+
+</g>
+</g>
+<g transform="translate(9056, 962)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskEthereum">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MetamaskEthereum">
+
+</g>
+</g>
+</g>
+<g data-name="MetamaskInjectedWindow">
+<g fill="lightblue" stroke="#33322E" data-name="MetamaskInjectedWindow">
+<rect x="8412.0" y="497.0" height="70.0" width="268.0" data-name="MetamaskInjectedWindow"></rect>
+<path d="M8412.0 528.0 L8680.0 528.0" fill="none" data-name="MetamaskInjectedWindow"></path>
+<path d="M8412.0 559.0 L8680.0 559.0" fill="none" data-name="MetamaskInjectedWindow"></path>
+</g>
+<g transform="translate(8412, 497)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetamaskInjectedWindow">
+<a id=".MetamaskInjectedWindow" xlink:href=""><text x="126.0" y="13.5" stroke="none" text-anchor="middle" data-name="MetamaskInjectedWindow">MetamaskInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(8412, 528)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskInjectedWindow">+ethereum: MetamaskEthereum</text>
+
+</g>
+</g>
+<g transform="translate(8412, 559)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MetamaskInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="ITransactionDataRaw">
+<g fill="lightblue" stroke="#33322E" data-name="ITransactionDataRaw">
+<rect x="4486.0" y="15.0" height="190.0" width="224.0" data-name="ITransactionDataRaw"></rect>
+<path d="M4486.0 46.0 L4710.0 46.0" fill="none" data-name="ITransactionDataRaw"></path>
+<path d="M4486.0 197.0 L4710.0 197.0" fill="none" data-name="ITransactionDataRaw"></path>
+</g>
+<g transform="translate(4486, 15)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionDataRaw">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ITransactionDataRaw">
+<a id=".ITransactionDataRaw" xlink:href=""><text x="104.0" y="13.5" stroke="none" text-anchor="middle" data-name="ITransactionDataRaw">ITransactionDataRaw</text></a>
+
+</g>
+</g>
+<g transform="translate(4486, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionDataRaw">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ITransactionDataRaw">
+<text x="0.0" y="13.5" stroke="none" data-name="ITransactionDataRaw">+to: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ITransactionDataRaw">+value: string | number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ITransactionDataRaw">+gas: string | number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ITransactionDataRaw">+gasPrice: string | number</text>
+<text x="0.0" y="73.5" stroke="none" data-name="ITransactionDataRaw">+data: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="ITransactionDataRaw">+nonce: number</text>
+<text x="0.0" y="103.5" stroke="none" data-name="ITransactionDataRaw">+chainId: number</text>
+<text x="0.0" y="118.5" stroke="none" data-name="ITransactionDataRaw">+hardfork: string</text>
+<text x="0.0" y="133.5" stroke="none" data-name="ITransactionDataRaw">+common: any</text>
+
+</g>
+</g>
+<g transform="translate(4486, 197)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionDataRaw">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ITransactionDataRaw">
+
+</g>
+</g>
+</g>
+<g data-name="ITransactionData">
+<g fill="lightblue" stroke="#33322E" data-name="ITransactionData">
+<rect x="4750.0" y="0.0" height="220.0" width="224.0" data-name="ITransactionData"></rect>
+<path d="M4750.0 31.0 L4974.0 31.0" fill="none" data-name="ITransactionData"></path>
+<path d="M4750.0 212.0 L4974.0 212.0" fill="none" data-name="ITransactionData"></path>
+</g>
+<g transform="translate(4750, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionData">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ITransactionData">
+<a id=".ITransactionData" xlink:href=""><text x="104.0" y="13.5" stroke="none" text-anchor="middle" data-name="ITransactionData">ITransactionData</text></a>
+
+</g>
+</g>
+<g transform="translate(4750, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionData">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ITransactionData">
+<text x="0.0" y="13.5" stroke="none" data-name="ITransactionData">+to: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ITransactionData">+value: string | number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ITransactionData">+gas: string | number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ITransactionData">+gasPrice: string | number</text>
+<text x="0.0" y="73.5" stroke="none" data-name="ITransactionData">+functionName: string</text>
+<text x="0.0" y="88.5" stroke="none" data-name="ITransactionData">+params: string | number[]</text>
+<text x="0.0" y="103.5" stroke="none" data-name="ITransactionData">+abi: IABIItem[]</text>
+<text x="0.0" y="118.5" stroke="none" data-name="ITransactionData">+nonce: number</text>
+<text x="0.0" y="133.5" stroke="none" data-name="ITransactionData">+chainId: number</text>
+<text x="0.0" y="148.5" stroke="none" data-name="ITransactionData">+hardfork: string</text>
+<text x="0.0" y="163.5" stroke="none" data-name="ITransactionData">+common: any</text>
+
+</g>
+</g>
+<g transform="translate(4750, 212)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionData">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ITransactionData">
+
+</g>
+</g>
+</g>
+<g data-name="IWalletConnector">
+<g fill="lightblue" stroke="#33322E" data-name="IWalletConnector">
+<rect x="5052.0" y="8.0" height="205.0" width="638.0" data-name="IWalletConnector"></rect>
+<path d="M5052.0 39.0 L5690.0 39.0" fill="none" data-name="IWalletConnector"></path>
+<path d="M5052.0 205.0 L5690.0 205.0" fill="none" data-name="IWalletConnector"></path>
+</g>
+<g transform="translate(5052, 8)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IWalletConnector">
+<a id=".IWalletConnector" xlink:href=""><text x="311.0" y="13.5" stroke="none" text-anchor="middle" data-name="IWalletConnector">IWalletConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(5052, 39)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IWalletConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IWalletConnector">+chainId: string | number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IWalletConnector">+currentAddress: string</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IWalletConnector">+activate: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IWalletConnector">+sign: (message: string) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="73.5" stroke="none" data-name="IWalletConnector">+isUnlocked: () =&gt; Promise&lt;boolean&gt;</text>
+<text x="0.0" y="88.5" stroke="none" data-name="IWalletConnector">+sendTransaction: (transaction: ITransactionData) =&gt; Promise&lt;string&gt;</text>
+<text x="0.0" y="103.5" stroke="none" data-name="IWalletConnector">+encodeContract: (abi: IABIItem[], contractAddress?: string) =&gt; IContract</text>
+<text x="0.0" y="118.5" stroke="none" data-name="IWalletConnector">+setOnAddressChange: (callback: (address: string) =&gt; void) =&gt; void</text>
+<text x="0.0" y="133.5" stroke="none" data-name="IWalletConnector">+setOnChainChange: (callback: (chainId: string | number) =&gt; void) =&gt; void</text>
+<text x="0.0" y="148.5" stroke="none" data-name="IWalletConnector">+restoreState: (address: string, chaidId: string | number) =&gt; Promise&lt;boolean&gt;</text>
+
+</g>
+</g>
+<g transform="translate(5052, 205)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IWalletConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IQRConnector">
+<g fill="lightblue" stroke="#33322E" data-name="IQRConnector">
+<rect x="6067.0" y="53.0" height="115.0" width="717.0" data-name="IQRConnector"></rect>
+<path d="M6067.0 84.0 L6784.0 84.0" fill="none" data-name="IQRConnector"></path>
+<path d="M6067.0 160.0 L6784.0 160.0" fill="none" data-name="IQRConnector"></path>
+</g>
+<g transform="translate(6067, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IQRConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IQRConnector">
+<a id=".IQRConnector" xlink:href=""><text x="350.5" y="13.5" stroke="none" text-anchor="middle" data-name="IQRConnector">IQRConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(6067, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IQRConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IQRConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IQRConnector">+qrCode: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IQRConnector">+setQrCodeSetCallback: (callback: (qrCode: string, validTime?: number) =&gt; void) =&gt; void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IQRConnector">+abortPendingActivation: () =&gt; void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IQRConnector">+abortPendingTransaction: () =&gt; void</text>
+
+</g>
+</g>
+<g transform="translate(6067, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IQRConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IQRConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IDeepLinkConnector">
+<g fill="lightblue" stroke="#33322E" data-name="IDeepLinkConnector">
+<rect x="6824.0" y="53.0" height="115.0" width="569.0" data-name="IDeepLinkConnector"></rect>
+<path d="M6824.0 84.0 L7393.0 84.0" fill="none" data-name="IDeepLinkConnector"></path>
+<path d="M6824.0 160.0 L7393.0 160.0" fill="none" data-name="IDeepLinkConnector"></path>
+</g>
+<g transform="translate(6824, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IDeepLinkConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IDeepLinkConnector">
+<a id=".IDeepLinkConnector" xlink:href=""><text x="276.5" y="13.5" stroke="none" text-anchor="middle" data-name="IDeepLinkConnector">IDeepLinkConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(6824, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IDeepLinkConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IDeepLinkConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IDeepLinkConnector">+deeplink: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IDeepLinkConnector">+setDeeplinkSetCallback: (callback: (deeplink: string) =&gt; void) =&gt; void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IDeepLinkConnector">+abortPendingActivation: () =&gt; void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IDeepLinkConnector">+abortPendingTransaction: () =&gt; void</text>
+
+</g>
+</g>
+<g transform="translate(6824, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IDeepLinkConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IDeepLinkConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IExtensionConnector">
+<g fill="lightblue" stroke="#33322E" data-name="IExtensionConnector">
+<rect x="9319.0" y="489.0" height="85.0" width="249.0" data-name="IExtensionConnector"></rect>
+<path d="M9319.0 520.0 L9568.0 520.0" fill="none" data-name="IExtensionConnector"></path>
+<path d="M9319.0 566.0 L9568.0 566.0" fill="none" data-name="IExtensionConnector"></path>
+</g>
+<g transform="translate(9319, 489)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IExtensionConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IExtensionConnector">
+<a id=".IExtensionConnector" xlink:href=""><text x="116.5" y="13.5" stroke="none" text-anchor="middle" data-name="IExtensionConnector">IExtensionConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(9319, 520)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IExtensionConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IExtensionConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IExtensionConnector">+hasExtension: () =&gt; boolean</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IExtensionConnector">+getInstallLink: () =&gt; string</text>
+
+</g>
+</g>
+<g transform="translate(9319, 566)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IExtensionConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IExtensionConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IWalletState">
+<g fill="lightblue" stroke="#33322E" data-name="IWalletState">
+<rect x="7433.0" y="53.0" height="115.0" width="213.0" data-name="IWalletState"></rect>
+<path d="M7433.0 84.0 L7646.0 84.0" fill="none" data-name="IWalletState"></path>
+<path d="M7433.0 160.0 L7646.0 160.0" fill="none" data-name="IWalletState"></path>
+</g>
+<g transform="translate(7433, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletState">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IWalletState">
+<a id=".IWalletState" xlink:href=""><text x="98.5" y="13.5" stroke="none" text-anchor="middle" data-name="IWalletState">IWalletState</text></a>
+
+</g>
+</g>
+<g transform="translate(7433, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletState">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IWalletState">
+<text x="0.0" y="13.5" stroke="none" data-name="IWalletState">+address: string</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IWalletState">+chainId: string | number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IWalletState">+chainType: default</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IWalletState">+walletType: default</text>
+
+</g>
+</g>
+<g transform="translate(7433, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletState">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IWalletState">
+
+</g>
+</g>
+</g>
+<g data-name="ChainType">
+<g fill="lightgreen" stroke="#33322E" data-name="ChainType">
+<rect x="7686.0" y="49.0" height="122.0" width="166.0" data-name="ChainType"></rect>
+<path d="M7686.0 80.0 L7852.0 80.0" fill="none" data-name="ChainType"></path>
+</g>
+<g transform="translate(7686, 49)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ChainType">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ChainType">
+<a id=".ChainType" xlink:href=""><text x="75.0" y="13.5" stroke="none" text-anchor="middle" data-name="ChainType">ChainType</text></a>
+
+</g>
+</g>
+<g transform="translate(7686, 80)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ChainType">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ChainType">
+<text x="0.0" y="13.5" stroke="none" data-name="ChainType">NONE</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ChainType">ETHEREUM</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ChainType">KLAYTN</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ChainType">KLAYTN_TESTNET</text>
+<text x="0.0" y="73.5" stroke="none" data-name="ChainType">POLYGON</text>
+
+</g>
+</g>
+</g>
+<g data-name="WalletProviderType">
+<g fill="lightgreen" stroke="#33322E" data-name="WalletProviderType">
+<rect x="7892.0" y="57.0" height="107.0" width="170.0" data-name="WalletProviderType"></rect>
+<path d="M7892.0 88.0 L8062.0 88.0" fill="none" data-name="WalletProviderType"></path>
+</g>
+<g transform="translate(7892, 57)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="WalletProviderType">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="WalletProviderType">
+<a id=".WalletProviderType" xlink:href=""><text x="77.0" y="13.5" stroke="none" text-anchor="middle" data-name="WalletProviderType">WalletProviderType</text></a>
+
+</g>
+</g>
+<g transform="translate(7892, 88)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="WalletProviderType">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="WalletProviderType">
+<text x="0.0" y="13.5" stroke="none" data-name="WalletProviderType">NONE</text>
+<text x="0.0" y="28.5" stroke="none" data-name="WalletProviderType">EXTENSION</text>
+<text x="0.0" y="43.5" stroke="none" data-name="WalletProviderType">QR_CODE</text>
+<text x="0.0" y="58.5" stroke="none" data-name="WalletProviderType">DEEP_LINK</text>
+
+</g>
+</g>
+</g>
+<g data-name="WalletType">
+<g fill="lightgreen" stroke="#33322E" data-name="WalletType">
+<rect x="8102.0" y="42.0" height="137.0" width="109.0" data-name="WalletType"></rect>
+<path d="M8102.0 73.0 L8211.0 73.0" fill="none" data-name="WalletType"></path>
+</g>
+<g transform="translate(8102, 42)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="WalletType">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="WalletType">
+<a id=".WalletType" xlink:href=""><text x="46.5" y="13.5" stroke="none" text-anchor="middle" data-name="WalletType">WalletType</text></a>
+
+</g>
+</g>
+<g transform="translate(8102, 73)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="WalletType">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="WalletType">
+<text x="0.0" y="13.5" stroke="none" data-name="WalletType">NONE</text>
+<text x="0.0" y="28.5" stroke="none" data-name="WalletType">METAMASK</text>
+<text x="0.0" y="43.5" stroke="none" data-name="WalletType">KAIKAS</text>
+<text x="0.0" y="58.5" stroke="none" data-name="WalletType">DCENT</text>
+<text x="0.0" y="73.5" stroke="none" data-name="WalletType">KLIP</text>
+<text x="0.0" y="88.5" stroke="none" data-name="WalletType">COINBASE</text>
+
+</g>
+</g>
+</g>
+<g data-name="Window">
+<g fill="#eee8d5" stroke="#33322E" data-name="Window">
+<rect x="8251.0" y="95.0" height="31.0" width="78.0" data-name="Window"></rect>
+</g>
+<g transform="translate(8251, 95)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Window">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Window">
+<text x="31.0" y="13.5" stroke="none" text-anchor="middle" data-name="Window">Window</text>
+
+</g>
+</g>
+</g>
+<g data-name="IpcProvider">
+<g fill="#eee8d5" stroke="#33322E" data-name="IpcProvider">
+<rect x="8947.0" y="95.0" height="31.0" width="106.0" data-name="IpcProvider"></rect>
+</g>
+<g transform="translate(8947, 95)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="IpcProvider">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IpcProvider">
+<text x="45.0" y="13.5" stroke="none" text-anchor="middle" data-name="IpcProvider">IpcProvider</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

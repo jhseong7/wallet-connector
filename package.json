@@ -1,0 +1,53 @@
+{
+  "name": "@jhseong7/wallet-connector",
+  "version": "1.1.1",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "package.json"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "sh ./build.sh",
+    "local-devbuild": "sh ./local-devbuild.sh",
+    "rollup": "rm -r ./dist & rollup -c",
+    "uml-gen": "sh ./generate-uml.sh",
+    "prepare": "sh ./build.sh"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "dependencies": {
+    "@coinbase/wallet-sdk": "^3.3.0",
+    "@walletconnect/client": "^1.8.0",
+    "caver-js": "^1.8.1",
+    "esbuild": "^0.14.48",
+    "favorlet.js": "^1.1.2",
+    "mobx": "^6.6.1",
+    "web3": "^1.8.0",
+    "web3-eth-contract": "^1.7.3"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^16.11.31",
+    "@types/web3": "^1.2.2",
+    "prettier": "^2.3.2",
+    "rollup": "^2.75.7",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-esbuild": "^4.9.1",
+    "rollup-plugin-typescript2": "^0.32.1",
+    "tsuml2": "^0.6.1",
+    "typescript": "^4.6.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}

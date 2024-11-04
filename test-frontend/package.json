@@ -1,0 +1,68 @@
+{
+  "name": "test-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ethereumjs/util": "^8.0.2",
+    "@metamask/eth-sig-util": "4.0.1",
+    "@jhseong7/wallet-connector": "file:../localdevbuild",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.43",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-qr-code": "^2.0.7",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.8",
+    "typescript": "^4.7.4",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0"
+  },
+  "scripts": {
+    "prestart": "rm -rf node_module/.cache/ && rm yarn.lock && yarn && yarn update-localpackage",
+    "start": "react-app-rewired start",
+    "prebuild": "yarn update-localpackage",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
+    "preupdate-localpackage": "cd ../ && rm -r ./localdevbuild && yarn local-devbuild",
+    "update-localpackage": "sh ./update-localpackage.sh",
+    "prestart-build": "rm -rf node_module/.cache && yarn update-localpackage && yarn build",
+    "start-build": "npx serve -s build -p 3002"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "chrome >= 67",
+      "edge >= 79",
+      "firefox >= 68",
+      "opera >= 54",
+      "safari >= 14"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

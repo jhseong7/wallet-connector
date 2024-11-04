@@ -1,0 +1,6 @@
+{
+  "glob": "./src/(connector/**/*.ts|type/interface/!(abi|contract).ts)",
+  "modifiers": true,
+  "propertyTypes": false,
+  "nomnoml": ["#arrowSize: 1.5", "#.interface: fill=#8f8 dashed"]
+}

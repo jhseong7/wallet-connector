@@ -1,0 +1,1000 @@
+<svg version="1.1" baseProfile="full" width="3327.8" height="1357.0" viewbox="0 0 3327.75 1357" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+#arrowSize: 1.5
+#.interface: fill=#8f8 dashed[&lt;interface&gt;Ethereum|+request;+on;+chainId;+selectedAddress|]
+[&lt;interface&gt;EthereumInjectedWindow|+ethereum|]
+[IpcProvider]&lt;:--[Ethereum]
+[Window]&lt;:--[EthereumInjectedWindow]
+[Window]&lt;:--[EthereumInjectedWindow]
+[&lt;interface&gt;Klaytn|+enable;+on;+networkVersion;+selectedAddress|]
+[&lt;interface&gt;KlaytnInjectedWindow|+klaytn|]
+[Window]&lt;:--[KlaytnInjectedWindow]
+[Window]&lt;:--[KlaytnInjectedWindow]
+[&lt;interface&gt;MetamaskEthereum|+isMetaMask;+_metamask|]
+[&lt;interface&gt;MetamaskInjectedWindow|+ethereum|]
+[Ethereum]&lt;:--[MetamaskEthereum]
+[Window]&lt;:--[MetamaskInjectedWindow]
+[Window]&lt;:--[MetamaskInjectedWindow]
+[&lt;interface&gt;ITransactionData|+to;+value;+gas;+gasPrice;+functionName;+params;+abi;+nonce;+chainId;+hardfork;+common|]
+[&lt;interface&gt;IWalletStateChangeHandler|+setOnAddressChange;+setOnChainChange|]
+[&lt;interface&gt;IWalletConnector|+chainId;+currentAddress;+activate;+sign;+isUnlocked;+sendTransaction;+encodeContract;+restoreState|]
+[&lt;interface&gt;IQRConnector|+qrCode;+setQrCodeSetCallback;+abortPendingActivation;+abortPendingTransaction|]
+[&lt;interface&gt;IDeepLinkConnector|+deeplink;+setDeeplinkSetCallback;+abortPendingActivation;+abortPendingTransaction|]
+[&lt;interface&gt;IExtensionConnector|+hasExtension;+getInstallLink|]
+[&lt;interface&gt;IWalletState|+address;+chainId;+chainType;+walletType|]
+[IWalletStateChangeHandler]&lt;:--[IWalletConnector]
+[BaseChangeEventHandler|#onAddressChangeCallback;#onChainChangeCallback;+setOnAddressChange;+setOnChainChange|]
+[IWalletStateChangeHandler]&lt;:--[BaseChangeEventHandler]
+[CoinbaseConnector||+static getInstance()]
+[EthereumConnector]&lt;:-[CoinbaseConnector]
+[DcentEthereumConnector|+qrCode;+deeplink;+qrCodeSetCallback;+deeplinkSetCallback;+hasExtension;+getInstallLink;+setQrCodeSetCallback;+setDeeplinkSetCallback;+abortPendingActivation;+abortPendingTransaction|]
+[&lt;interface&gt;DcentEthereum|+isDcentWallet|]
+[&lt;interface&gt;DcentEthereumInjectedWindow|+ethereum|]
+[EthereumConnector]&lt;:-[DcentEthereumConnector]
+[IQRConnector]&lt;:--[DcentEthereumConnector]
+[IExtensionConnector]&lt;:--[DcentEthereumConnector]
+[IDeepLinkConnector]&lt;:--[DcentEthereumConnector]
+[Ethereum]&lt;:--[DcentEthereum]
+[Window]&lt;:--[DcentEthereumInjectedWindow]
+[Window]&lt;:--[DcentEthereumInjectedWindow]
+[DcentKlaytnConnector|+qrCode;+deeplink;+qrCodeSetCallback;+deeplinkSetCallback;+hasExtension;+getInstallLink;+setQrCodeSetCallback;+setDeeplinkSetCallback;+abortPendingActivation;+abortPendingTransaction|]
+[&lt;interface&gt;DcentKlaytn|+isDcentWallet|]
+[&lt;interface&gt;DcentKlaytnInjectedWindow|+klaytn|]
+[KlaytnConnector]&lt;:-[DcentKlaytnConnector]
+[Klaytn]&lt;:--[DcentKlaytn]
+[Window]&lt;:--[DcentKlaytnInjectedWindow]
+[Window]&lt;:--[DcentKlaytnInjectedWindow]
+[EthereumConnector|-web3Inst;+currentAddress;+chainId;#static instance;#contractEncoder;#ethereum;+isUnlocked;+activate;+sign;+sendTransaction;+encodeContract;-setCurrentAddress;-setChainId;+restoreState|+static getInstance();+static create()]
+[BaseChangeEventHandler]&lt;:-[EthereumConnector]
+[IWalletConnector]&lt;:--[EthereumConnector]
+[KaikasConnector|+hasExtension;+getInstallLink;+isUnlocked|+static getInstance();+static create()]
+[&lt;interface&gt;KaikasKlaytn|+isKaikas;+_kaikas|]
+[&lt;interface&gt;KaikasInjectedWindow|+klaytn|]
+[KlaytnConnector]&lt;:-[KaikasConnector]
+[IExtensionConnector]&lt;:--[KaikasConnector]
+[Klaytn]&lt;:--[KaikasKlaytn]
+[Window]&lt;:--[KaikasInjectedWindow]
+[Window]&lt;:--[KaikasInjectedWindow]
+[KlaytnConnector|+currentAddress;+chainId;#caverInst;#static instance;#contractEncoder;+isUnlocked;+activate;+sign;+sendTransaction;+encodeContract;-setCurrentAddress;-setChainId;+restoreState|+static getInstance();+static create()]
+[BaseChangeEventHandler]&lt;:-[KlaytnConnector]
+[IWalletConnector]&lt;:--[KlaytnConnector]
+[KlipConnector|+chainId;+currentAddress;-contractEncoder;-bAppName;-static instance;+requestKey;+deeplink;+qrCode;+qrCodeSetCallback;+deeplinkSetCallback;-activateIntervalHandler;-transactionIntervalHandler;+isUnlocked;+activate;+abortPendingActivation;+sign;+sendTransaction;+abortPendingTransaction;+encodeContract;-setRequestKey;-clearLinkAndCode;-setCurrentAddress;-setChainId;+setQrCodeSetCallback;+setDeeplinkSetCallback;+restoreState|+static getInstance();+static create()]
+[BaseChangeEventHandler]&lt;:-[KlipConnector]
+[IWalletConnector]&lt;:--[KlipConnector]
+[IQRConnector]&lt;:--[KlipConnector]
+[IDeepLinkConnector]&lt;:--[KlipConnector]
+[MetamaskConnector|+deeplink;+deeplinkSetCallback;+hasExtension;+getInstallLink;+isUnlocked;+setDeeplinkSetCallback;-setDeepLink;+abortPendingActivation;+abortPendingTransaction|+static getInstance();+static create()]
+[EthereumConnector]&lt;:-[MetamaskConnector]
+[IExtensionConnector]&lt;:--[MetamaskConnector]
+[IDeepLinkConnector]&lt;:--[MetamaskConnector]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+<g transform="translate(0.5, 0.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="1357.0" width="3327.8" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<g stroke-dasharray="6 6">
+<path d="M788.3 145.5 L788.25 240 L788.25 332 L788.3 332.0 " fill="none"></path>
+</g>
+<path d="M796.3 145.5 L788.3 145.5 L780.3 145.5 L788.3 125.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1243.7 134.6 L1038 240 L1038 312.5 L1038.0 312.5 " fill="none"></path>
+</g>
+<path d="M1247.3 141.7 L1243.7 134.6 L1240.0 127.5 L1261.5 125.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1289.0 145.4 L1281.5 240 L1281.5 312.5 L1281.5 312.5 " fill="none"></path>
+</g>
+<path d="M1296.9 146.1 L1289.0 145.4 L1281.0 144.8 L1290.5 125.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M722.5 357.6 L86.5 455 L86.5 584 L86.5 584.0 " fill="none"></path>
+</g>
+<path d="M723.7 365.5 L722.5 357.6 L721.3 349.7 L742.3 354.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1337.4 135.2 L1527.5 240 L1527.5 312.5 L1527.5 312.5 " fill="none"></path>
+</g>
+<path d="M1341.2 128.2 L1337.4 135.2 L1333.5 142.2 L1319.9 125.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M2907.2 172.5 L2902.5 240 L2902.5 260 L2902.5 260.0 " fill="none"></path>
+</g>
+<path d="M2915.2 173.0 L2907.2 172.5 L2899.2 171.9 L2908.6 152.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M3007.5 162.0 L3151.25 240 L3151.25 290 L3151.3 290.0 " fill="none"></path>
+</g>
+<path d="M3011.3 155.0 L3007.5 162.0 L3003.6 169.1 L2989.9 152.5 Z"></path>
+<path d="M1847.9 716.4 L1753.25 798 L2385 1027.209330558446 L2385.0 1027.2 " fill="none"></path>
+<path d="M1853.1 722.4 L1847.9 716.4 L1842.6 710.3 L1863.0 703.3 Z"></path>
+<path d="M1849.4 737.3 L1793.25 798 L960.75 1028.3690476190477 L960.8 1028.4 " fill="none"></path>
+<path d="M1855.3 742.8 L1849.4 737.3 L1843.5 731.9 L1863.0 722.6 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M510.0 703.9 L499 798 L735.75 975.2659269863994 L735.8 975.3 " fill="none"></path>
+</g>
+<path d="M517.9 704.8 L510.0 703.9 L502.0 702.9 L512.3 684.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1481.1 680.9 L1323.25 798 L960.75 997.5657894736842 L960.8 997.6 " fill="none"></path>
+</g>
+<path d="M1485.9 687.3 L1481.1 680.9 L1476.4 674.5 L1497.2 669.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1081.5 693.8 L895.25 798 L866.6725621414914 957 L866.7 957.0 " fill="none"></path>
+</g>
+<path d="M1085.4 700.7 L1081.5 693.8 L1077.6 686.8 L1099.0 684.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M854.1 354.8 L1754 455 L1754 591.5 L1754.0 591.5 " fill="none"></path>
+</g>
+<path d="M855.0 346.9 L854.1 354.8 L853.2 362.8 L834.3 352.6 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1350.1 124.6 L1810 240 L1810 312.5 L1810.0 312.5 " fill="none"></path>
+</g>
+<path d="M1352.1 116.9 L1350.1 124.6 L1348.2 132.4 L1330.8 119.8 Z"></path>
+<path d="M3044.4 789.9 L3042.25 798 L3108.525334608031 957 L3108.5 957.0 " fill="none"></path>
+<path d="M3052.1 791.9 L3044.4 789.9 L3036.6 787.8 L3049.4 770.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M2562.1 187.5 L2558.5 240 L2558.5 312.5 L2558.5 312.5 " fill="none"></path>
+</g>
+<path d="M2570.1 188.0 L2562.1 187.5 L2554.2 186.9 L2563.5 167.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1350.5 119.5 L2099.5 240 L2099.5 312.5 L2099.5 312.5 " fill="none"></path>
+</g>
+<path d="M1351.8 111.6 L1350.5 119.5 L1349.2 127.4 L1330.8 116.3 Z"></path>
+<path d="M3066.9 417.8 L3022.25 455 L2041 612.2383788834385 L2041.0 612.2 " fill="none"></path>
+<path d="M3072.0 423.9 L3066.9 417.8 L3061.8 411.7 L3082.3 405.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M2803.6 358.7 L1952 455 L1952 475 L1952.0 475.0 " fill="none"></path>
+</g>
+<path d="M2804.5 366.6 L2803.6 358.7 L2802.7 350.7 L2823.5 356.4 Z"></path>
+<path d="M3129.1 789.9 L3131.25 798 L2781 1006.5153671030165 L2781.0 1006.5 " fill="none"></path>
+<path d="M3136.9 787.8 L3129.1 789.9 L3121.4 791.9 L3124.1 770.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1547.2 688.9 L1534.5 798 L2603 1039.393304535637 L2603.0 1039.4 " fill="none"></path>
+</g>
+<path d="M1555.2 689.8 L1547.2 688.9 L1539.3 687.9 L1549.5 669.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M2652.3 180.3 L2724.5 240 L2724.5 305 L2724.5 305.0 " fill="none"></path>
+</g>
+<path d="M2657.4 174.1 L2652.3 180.3 L2647.2 186.4 L2636.9 167.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1350.6 117.2 L2354.5 240 L2354.5 312.5 L2354.5 312.5 " fill="none"></path>
+</g>
+<path d="M1351.6 109.3 L1350.6 117.2 L1349.6 125.1 L1330.8 114.8 Z"></path>
+<path d="M3106.5 422.1 L3086.75 455 L3086.75 482.5 L3086.8 482.5 " fill="none"></path>
+<path d="M3113.3 426.3 L3106.5 422.1 L3099.6 418.0 L3116.8 405.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M2804.2 373.5 L2495.25 455 L2997.75 600.6952662721893 L2997.8 600.7 " fill="none"></path>
+</g>
+<path d="M2806.2 381.2 L2804.2 373.5 L2802.1 365.7 L2823.5 368.4 Z"></path>
+<path d="M3196.0 422.1 L3215.75 455 L3215.75 626.5 L3215.75 626.5 L3215.75 798 L3215.75 798 L2345 1028.8756653992396 L2345.0 1028.9 " fill="none"></path>
+<path d="M3202.9 418.0 L3196.0 422.1 L3189.2 426.3 L3185.8 405.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M2956.6 452.8 L2957.75 455 L2957.75 626.5 L2957.75 626.5 L2957.75 798 L2957.75 798 L2345 1018.0262615859938 L2345.0 1018.0 " fill="none"></path>
+</g>
+<path d="M2963.7 449.1 L2956.6 452.8 L2949.5 456.4 L2947.5 435.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M625.2 694.8 L785.5 798 L2114 1038.5836218836564 L2114.0 1038.6 " fill="none"></path>
+</g>
+<path d="M629.5 688.1 L625.2 694.8 L620.8 701.6 L608.4 684.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1192.7 703.9 L1181.75 798 L2114 1030.6732283464567 L2114.0 1030.7 " fill="none"></path>
+</g>
+<path d="M1200.7 704.8 L1192.7 703.9 L1184.8 702.9 L1195.0 684.0 Z"></path>
+<path d="M2006.9 797.0 L2007.25 798 L1225.75 1026.5931208053692 L1225.8 1026.6 " fill="none"></path>
+<path d="M2014.6 794.6 L2006.9 797.0 L1999.3 799.5 L2000.8 778.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1607.4 683.7 L1713.25 798 L1225.75 1010.46875 L1225.8 1010.5 " fill="none"></path>
+</g>
+<path d="M1613.3 678.2 L1607.4 683.7 L1601.6 689.1 L1593.8 669.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1237.7 702.1 L1283.25 798 L1187.360898661568 945.5 L1187.4 945.5 " fill="none"></path>
+</g>
+<path d="M1244.9 698.6 L1237.7 702.1 L1230.4 705.5 L1229.1 684.0 Z"></path>
+<g data-name="EthereumInjectedWindow">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="EthereumInjectedWindow">
+<rect x="930.0" y="313.0" height="70.0" width="217.0" data-name="EthereumInjectedWindow"></rect>
+<path d="M930.0 344.0 L1147.0 344.0" fill="none" data-name="EthereumInjectedWindow"></path>
+<path d="M930.0 375.0 L1147.0 375.0" fill="none" data-name="EthereumInjectedWindow"></path>
+</g>
+<g transform="translate(930, 313)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="EthereumInjectedWindow">
+<a id=".EthereumInjectedWindow" xlink:href=""><text x="100.5" y="13.5" stroke="none" text-anchor="middle" data-name="EthereumInjectedWindow">EthereumInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(930, 344)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EthereumInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="EthereumInjectedWindow">+ethereum</text>
+
+</g>
+</g>
+<g transform="translate(930, 375)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="EthereumInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="Klaytn">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="Klaytn">
+<rect x="2489.0" y="53.0" height="115.0" width="158.0" data-name="Klaytn"></rect>
+<path d="M2489.0 84.0 L2647.0 84.0" fill="none" data-name="Klaytn"></path>
+<path d="M2489.0 160.0 L2647.0 160.0" fill="none" data-name="Klaytn"></path>
+</g>
+<g transform="translate(2489, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Klaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Klaytn">
+<a id=".Klaytn" xlink:href=""><text x="71.0" y="13.5" stroke="none" text-anchor="middle" data-name="Klaytn">Klaytn</text></a>
+
+</g>
+</g>
+<g transform="translate(2489, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Klaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Klaytn">
+<text x="0.0" y="13.5" stroke="none" data-name="Klaytn">+enable</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Klaytn">+on</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Klaytn">+networkVersion</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Klaytn">+selectedAddress</text>
+
+</g>
+</g>
+<g transform="translate(2489, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Klaytn">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Klaytn">
+
+</g>
+</g>
+</g>
+<g data-name="KlaytnInjectedWindow">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="KlaytnInjectedWindow">
+<rect x="1187.0" y="313.0" height="70.0" width="190.0" data-name="KlaytnInjectedWindow"></rect>
+<path d="M1187.0 344.0 L1377.0 344.0" fill="none" data-name="KlaytnInjectedWindow"></path>
+<path d="M1187.0 375.0 L1377.0 375.0" fill="none" data-name="KlaytnInjectedWindow"></path>
+</g>
+<g transform="translate(1187, 313)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KlaytnInjectedWindow">
+<a id=".KlaytnInjectedWindow" xlink:href=""><text x="87.0" y="13.5" stroke="none" text-anchor="middle" data-name="KlaytnInjectedWindow">KlaytnInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(1187, 344)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlaytnInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="KlaytnInjectedWindow">+klaytn</text>
+
+</g>
+</g>
+<g transform="translate(1187, 375)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="KlaytnInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="MetamaskEthereum">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="MetamaskEthereum">
+<rect x="0.0" y="584.0" height="85.0" width="173.0" data-name="MetamaskEthereum"></rect>
+<path d="M0.0 615.0 L173.0 615.0" fill="none" data-name="MetamaskEthereum"></path>
+<path d="M0.0 661.0 L173.0 661.0" fill="none" data-name="MetamaskEthereum"></path>
+</g>
+<g transform="translate(0, 584)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskEthereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetamaskEthereum">
+<a id=".MetamaskEthereum" xlink:href=""><text x="78.5" y="13.5" stroke="none" text-anchor="middle" data-name="MetamaskEthereum">MetamaskEthereum</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 615)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskEthereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskEthereum">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskEthereum">+isMetaMask</text>
+<text x="0.0" y="28.5" stroke="none" data-name="MetamaskEthereum">+_metamask</text>
+
+</g>
+</g>
+<g transform="translate(0, 661)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskEthereum">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MetamaskEthereum">
+
+</g>
+</g>
+</g>
+<g data-name="MetamaskInjectedWindow">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="MetamaskInjectedWindow">
+<rect x="1417.0" y="313.0" height="70.0" width="222.0" data-name="MetamaskInjectedWindow"></rect>
+<path d="M1417.0 344.0 L1639.0 344.0" fill="none" data-name="MetamaskInjectedWindow"></path>
+<path d="M1417.0 375.0 L1639.0 375.0" fill="none" data-name="MetamaskInjectedWindow"></path>
+</g>
+<g transform="translate(1417, 313)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetamaskInjectedWindow">
+<a id=".MetamaskInjectedWindow" xlink:href=""><text x="103.0" y="13.5" stroke="none" text-anchor="middle" data-name="MetamaskInjectedWindow">MetamaskInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(1417, 344)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskInjectedWindow">+ethereum</text>
+
+</g>
+</g>
+<g transform="translate(1417, 375)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MetamaskInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="ITransactionData">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="ITransactionData">
+<rect x="937.0" y="0.0" height="220.0" width="151.0" data-name="ITransactionData"></rect>
+<path d="M937.0 31.0 L1088.0 31.0" fill="none" data-name="ITransactionData"></path>
+<path d="M937.0 212.0 L1088.0 212.0" fill="none" data-name="ITransactionData"></path>
+</g>
+<g transform="translate(937, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionData">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ITransactionData">
+<a id=".ITransactionData" xlink:href=""><text x="67.5" y="13.5" stroke="none" text-anchor="middle" data-name="ITransactionData">ITransactionData</text></a>
+
+</g>
+</g>
+<g transform="translate(937, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionData">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ITransactionData">
+<text x="0.0" y="13.5" stroke="none" data-name="ITransactionData">+to</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ITransactionData">+value</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ITransactionData">+gas</text>
+<text x="0.0" y="58.5" stroke="none" data-name="ITransactionData">+gasPrice</text>
+<text x="0.0" y="73.5" stroke="none" data-name="ITransactionData">+functionName</text>
+<text x="0.0" y="88.5" stroke="none" data-name="ITransactionData">+params</text>
+<text x="0.0" y="103.5" stroke="none" data-name="ITransactionData">+abi</text>
+<text x="0.0" y="118.5" stroke="none" data-name="ITransactionData">+nonce</text>
+<text x="0.0" y="133.5" stroke="none" data-name="ITransactionData">+chainId</text>
+<text x="0.0" y="148.5" stroke="none" data-name="ITransactionData">+hardfork</text>
+<text x="0.0" y="163.5" stroke="none" data-name="ITransactionData">+common</text>
+
+</g>
+</g>
+<g transform="translate(937, 212)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ITransactionData">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ITransactionData">
+
+</g>
+</g>
+</g>
+<g data-name="IWalletStateChangeHandler">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="IWalletStateChangeHandler">
+<rect x="2799.0" y="68.0" height="85.0" width="225.0" data-name="IWalletStateChangeHandler"></rect>
+<path d="M2799.0 99.0 L3024.0 99.0" fill="none" data-name="IWalletStateChangeHandler"></path>
+<path d="M2799.0 145.0 L3024.0 145.0" fill="none" data-name="IWalletStateChangeHandler"></path>
+</g>
+<g transform="translate(2799, 68)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletStateChangeHandler">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IWalletStateChangeHandler">
+<a id=".IWalletStateChangeHandler" xlink:href=""><text x="104.5" y="13.5" stroke="none" text-anchor="middle" data-name="IWalletStateChangeHandler">IWalletStateChangeHandler</text></a>
+
+</g>
+</g>
+<g transform="translate(2799, 99)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletStateChangeHandler">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IWalletStateChangeHandler">
+<text x="0.0" y="13.5" stroke="none" data-name="IWalletStateChangeHandler">+setOnAddressChange</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IWalletStateChangeHandler">+setOnChainChange</text>
+
+</g>
+</g>
+<g transform="translate(2799, 145)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletStateChangeHandler">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IWalletStateChangeHandler">
+
+</g>
+</g>
+</g>
+<g data-name="IWalletConnector">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="IWalletConnector">
+<rect x="2824.0" y="260.0" height="175.0" width="158.0" data-name="IWalletConnector"></rect>
+<path d="M2824.0 291.0 L2982.0 291.0" fill="none" data-name="IWalletConnector"></path>
+<path d="M2824.0 427.0 L2982.0 427.0" fill="none" data-name="IWalletConnector"></path>
+</g>
+<g transform="translate(2824, 260)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IWalletConnector">
+<a id=".IWalletConnector" xlink:href=""><text x="71.0" y="13.5" stroke="none" text-anchor="middle" data-name="IWalletConnector">IWalletConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(2824, 291)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IWalletConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IWalletConnector">+chainId</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IWalletConnector">+currentAddress</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IWalletConnector">+activate</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IWalletConnector">+sign</text>
+<text x="0.0" y="73.5" stroke="none" data-name="IWalletConnector">+isUnlocked</text>
+<text x="0.0" y="88.5" stroke="none" data-name="IWalletConnector">+sendTransaction</text>
+<text x="0.0" y="103.5" stroke="none" data-name="IWalletConnector">+encodeContract</text>
+<text x="0.0" y="118.5" stroke="none" data-name="IWalletConnector">+restoreState</text>
+
+</g>
+</g>
+<g transform="translate(2824, 427)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IWalletConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IQRConnector">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="IQRConnector">
+<rect x="407.0" y="569.0" height="115.0" width="225.0" data-name="IQRConnector"></rect>
+<path d="M407.0 600.0 L632.0 600.0" fill="none" data-name="IQRConnector"></path>
+<path d="M407.0 676.0 L632.0 676.0" fill="none" data-name="IQRConnector"></path>
+</g>
+<g transform="translate(407, 569)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IQRConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IQRConnector">
+<a id=".IQRConnector" xlink:href=""><text x="104.5" y="13.5" stroke="none" text-anchor="middle" data-name="IQRConnector">IQRConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(407, 600)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IQRConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IQRConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IQRConnector">+qrCode</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IQRConnector">+setQrCodeSetCallback</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IQRConnector">+abortPendingActivation</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IQRConnector">+abortPendingTransaction</text>
+
+</g>
+</g>
+<g transform="translate(407, 676)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IQRConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IQRConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IDeepLinkConnector">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="IDeepLinkConnector">
+<rect x="1089.0" y="569.0" height="115.0" width="225.0" data-name="IDeepLinkConnector"></rect>
+<path d="M1089.0 600.0 L1314.0 600.0" fill="none" data-name="IDeepLinkConnector"></path>
+<path d="M1089.0 676.0 L1314.0 676.0" fill="none" data-name="IDeepLinkConnector"></path>
+</g>
+<g transform="translate(1089, 569)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IDeepLinkConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IDeepLinkConnector">
+<a id=".IDeepLinkConnector" xlink:href=""><text x="104.5" y="13.5" stroke="none" text-anchor="middle" data-name="IDeepLinkConnector">IDeepLinkConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(1089, 600)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IDeepLinkConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IDeepLinkConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IDeepLinkConnector">+deeplink</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IDeepLinkConnector">+setDeeplinkSetCallback</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IDeepLinkConnector">+abortPendingActivation</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IDeepLinkConnector">+abortPendingTransaction</text>
+
+</g>
+</g>
+<g transform="translate(1089, 676)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IDeepLinkConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IDeepLinkConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IExtensionConnector">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="IExtensionConnector">
+<rect x="1464.0" y="584.0" height="85.0" width="181.0" data-name="IExtensionConnector"></rect>
+<path d="M1464.0 615.0 L1645.0 615.0" fill="none" data-name="IExtensionConnector"></path>
+<path d="M1464.0 661.0 L1645.0 661.0" fill="none" data-name="IExtensionConnector"></path>
+</g>
+<g transform="translate(1464, 584)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IExtensionConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IExtensionConnector">
+<a id=".IExtensionConnector" xlink:href=""><text x="82.5" y="13.5" stroke="none" text-anchor="middle" data-name="IExtensionConnector">IExtensionConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(1464, 615)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IExtensionConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IExtensionConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="IExtensionConnector">+hasExtension</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IExtensionConnector">+getInstallLink</text>
+
+</g>
+</g>
+<g transform="translate(1464, 661)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IExtensionConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IExtensionConnector">
+
+</g>
+</g>
+</g>
+<g data-name="IWalletState">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="IWalletState">
+<rect x="2338.0" y="53.0" height="115.0" width="111.0" data-name="IWalletState"></rect>
+<path d="M2338.0 84.0 L2449.0 84.0" fill="none" data-name="IWalletState"></path>
+<path d="M2338.0 160.0 L2449.0 160.0" fill="none" data-name="IWalletState"></path>
+</g>
+<g transform="translate(2338, 53)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletState">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IWalletState">
+<a id=".IWalletState" xlink:href=""><text x="47.5" y="13.5" stroke="none" text-anchor="middle" data-name="IWalletState">IWalletState</text></a>
+
+</g>
+</g>
+<g transform="translate(2338, 84)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletState">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IWalletState">
+<text x="0.0" y="13.5" stroke="none" data-name="IWalletState">+address</text>
+<text x="0.0" y="28.5" stroke="none" data-name="IWalletState">+chainId</text>
+<text x="0.0" y="43.5" stroke="none" data-name="IWalletState">+chainType</text>
+<text x="0.0" y="58.5" stroke="none" data-name="IWalletState">+walletType</text>
+
+</g>
+</g>
+<g transform="translate(2338, 160)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IWalletState">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IWalletState">
+
+</g>
+</g>
+</g>
+<g data-name="BaseChangeEventHandler">
+<g fill="#eee8d5" stroke="#33322E" data-name="BaseChangeEventHandler">
+<rect x="3031.0" y="290.0" height="115.0" width="241.0" data-name="BaseChangeEventHandler"></rect>
+<path d="M3031.0 321.0 L3272.0 321.0" fill="none" data-name="BaseChangeEventHandler"></path>
+<path d="M3031.0 397.0 L3272.0 397.0" fill="none" data-name="BaseChangeEventHandler"></path>
+</g>
+<g transform="translate(3031, 290)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="BaseChangeEventHandler">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="BaseChangeEventHandler">
+<a id=".BaseChangeEventHandler" xlink:href=""><text x="112.5" y="13.5" stroke="none" text-anchor="middle" data-name="BaseChangeEventHandler">BaseChangeEventHandler</text></a>
+
+</g>
+</g>
+<g transform="translate(3031, 321)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseChangeEventHandler">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BaseChangeEventHandler">
+<text x="0.0" y="13.5" stroke="none" data-name="BaseChangeEventHandler">#onAddressChangeCallback</text>
+<text x="0.0" y="28.5" stroke="none" data-name="BaseChangeEventHandler">#onChainChangeCallback</text>
+<text x="0.0" y="43.5" stroke="none" data-name="BaseChangeEventHandler">+setOnAddressChange</text>
+<text x="0.0" y="58.5" stroke="none" data-name="BaseChangeEventHandler">+setOnChainChange</text>
+
+</g>
+</g>
+<g transform="translate(3031, 397)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseChangeEventHandler">
+<g transform="translate(8, 8)" fill="#33322E" data-name="BaseChangeEventHandler">
+
+</g>
+</g>
+</g>
+<g data-name="CoinbaseConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="CoinbaseConnector">
+<rect x="2385.0" y="1025.0" height="70.0" width="178.0" data-name="CoinbaseConnector"></rect>
+<path d="M2385.0 1056.0 L2563.0 1056.0" fill="none" data-name="CoinbaseConnector"></path>
+<path d="M2385.0 1064.0 L2563.0 1064.0" fill="none" data-name="CoinbaseConnector"></path>
+</g>
+<g transform="translate(2385, 1025)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CoinbaseConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CoinbaseConnector">
+<a id=".CoinbaseConnector" xlink:href=""><text x="81.0" y="13.5" stroke="none" text-anchor="middle" data-name="CoinbaseConnector">CoinbaseConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(2385, 1056)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CoinbaseConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CoinbaseConnector">
+
+</g>
+</g>
+<g transform="translate(2385, 1064)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CoinbaseConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CoinbaseConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="CoinbaseConnector">+static getInstance()</text>
+
+</g>
+</g>
+</g>
+<g data-name="DcentEthereumConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="DcentEthereumConnector">
+<rect x="736.0" y="957.0" height="205.0" width="225.0" data-name="DcentEthereumConnector"></rect>
+<path d="M736.0 988.0 L961.0 988.0" fill="none" data-name="DcentEthereumConnector"></path>
+<path d="M736.0 1154.0 L961.0 1154.0" fill="none" data-name="DcentEthereumConnector"></path>
+</g>
+<g transform="translate(736, 957)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DcentEthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DcentEthereumConnector">
+<a id=".DcentEthereumConnector" xlink:href=""><text x="104.5" y="13.5" stroke="none" text-anchor="middle" data-name="DcentEthereumConnector">DcentEthereumConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(736, 988)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DcentEthereumConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="DcentEthereumConnector">+qrCode</text>
+<text x="0.0" y="28.5" stroke="none" data-name="DcentEthereumConnector">+deeplink</text>
+<text x="0.0" y="43.5" stroke="none" data-name="DcentEthereumConnector">+qrCodeSetCallback</text>
+<text x="0.0" y="58.5" stroke="none" data-name="DcentEthereumConnector">+deeplinkSetCallback</text>
+<text x="0.0" y="73.5" stroke="none" data-name="DcentEthereumConnector">+hasExtension</text>
+<text x="0.0" y="88.5" stroke="none" data-name="DcentEthereumConnector">+getInstallLink</text>
+<text x="0.0" y="103.5" stroke="none" data-name="DcentEthereumConnector">+setQrCodeSetCallback</text>
+<text x="0.0" y="118.5" stroke="none" data-name="DcentEthereumConnector">+setDeeplinkSetCallback</text>
+<text x="0.0" y="133.5" stroke="none" data-name="DcentEthereumConnector">+abortPendingActivation</text>
+<text x="0.0" y="148.5" stroke="none" data-name="DcentEthereumConnector">+abortPendingTransaction</text>
+
+</g>
+</g>
+<g transform="translate(736, 1154)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DcentEthereumConnector">
+
+</g>
+</g>
+</g>
+<g data-name="DcentEthereum">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="DcentEthereum">
+<rect x="1685.0" y="592.0" height="70.0" width="138.0" data-name="DcentEthereum"></rect>
+<path d="M1685.0 623.0 L1823.0 623.0" fill="none" data-name="DcentEthereum"></path>
+<path d="M1685.0 654.0 L1823.0 654.0" fill="none" data-name="DcentEthereum"></path>
+</g>
+<g transform="translate(1685, 592)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DcentEthereum">
+<a id=".DcentEthereum" xlink:href=""><text x="61.0" y="13.5" stroke="none" text-anchor="middle" data-name="DcentEthereum">DcentEthereum</text></a>
+
+</g>
+</g>
+<g transform="translate(1685, 623)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DcentEthereum">
+<text x="0.0" y="13.5" stroke="none" data-name="DcentEthereum">+isDcentWallet</text>
+
+</g>
+</g>
+<g transform="translate(1685, 654)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereum">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DcentEthereum">
+
+</g>
+</g>
+</g>
+<g data-name="DcentEthereumInjectedWindow">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="DcentEthereumInjectedWindow">
+<rect x="1679.0" y="313.0" height="70.0" width="263.0" data-name="DcentEthereumInjectedWindow"></rect>
+<path d="M1679.0 344.0 L1942.0 344.0" fill="none" data-name="DcentEthereumInjectedWindow"></path>
+<path d="M1679.0 375.0 L1942.0 375.0" fill="none" data-name="DcentEthereumInjectedWindow"></path>
+</g>
+<g transform="translate(1679, 313)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DcentEthereumInjectedWindow">
+<a id=".DcentEthereumInjectedWindow" xlink:href=""><text x="123.5" y="13.5" stroke="none" text-anchor="middle" data-name="DcentEthereumInjectedWindow">DcentEthereumInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(1679, 344)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DcentEthereumInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="DcentEthereumInjectedWindow">+ethereum</text>
+
+</g>
+</g>
+<g transform="translate(1679, 375)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentEthereumInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DcentEthereumInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="DcentKlaytnConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="DcentKlaytnConnector">
+<rect x="3039.0" y="957.0" height="205.0" width="225.0" data-name="DcentKlaytnConnector"></rect>
+<path d="M3039.0 988.0 L3264.0 988.0" fill="none" data-name="DcentKlaytnConnector"></path>
+<path d="M3039.0 1154.0 L3264.0 1154.0" fill="none" data-name="DcentKlaytnConnector"></path>
+</g>
+<g transform="translate(3039, 957)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DcentKlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DcentKlaytnConnector">
+<a id=".DcentKlaytnConnector" xlink:href=""><text x="104.5" y="13.5" stroke="none" text-anchor="middle" data-name="DcentKlaytnConnector">DcentKlaytnConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(3039, 988)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DcentKlaytnConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="DcentKlaytnConnector">+qrCode</text>
+<text x="0.0" y="28.5" stroke="none" data-name="DcentKlaytnConnector">+deeplink</text>
+<text x="0.0" y="43.5" stroke="none" data-name="DcentKlaytnConnector">+qrCodeSetCallback</text>
+<text x="0.0" y="58.5" stroke="none" data-name="DcentKlaytnConnector">+deeplinkSetCallback</text>
+<text x="0.0" y="73.5" stroke="none" data-name="DcentKlaytnConnector">+hasExtension</text>
+<text x="0.0" y="88.5" stroke="none" data-name="DcentKlaytnConnector">+getInstallLink</text>
+<text x="0.0" y="103.5" stroke="none" data-name="DcentKlaytnConnector">+setQrCodeSetCallback</text>
+<text x="0.0" y="118.5" stroke="none" data-name="DcentKlaytnConnector">+setDeeplinkSetCallback</text>
+<text x="0.0" y="133.5" stroke="none" data-name="DcentKlaytnConnector">+abortPendingActivation</text>
+<text x="0.0" y="148.5" stroke="none" data-name="DcentKlaytnConnector">+abortPendingTransaction</text>
+
+</g>
+</g>
+<g transform="translate(3039, 1154)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DcentKlaytnConnector">
+
+</g>
+</g>
+</g>
+<g data-name="DcentKlaytn">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="DcentKlaytn">
+<rect x="2492.0" y="313.0" height="70.0" width="134.0" data-name="DcentKlaytn"></rect>
+<path d="M2492.0 344.0 L2626.0 344.0" fill="none" data-name="DcentKlaytn"></path>
+<path d="M2492.0 375.0 L2626.0 375.0" fill="none" data-name="DcentKlaytn"></path>
+</g>
+<g transform="translate(2492, 313)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DcentKlaytn">
+<a id=".DcentKlaytn" xlink:href=""><text x="59.0" y="13.5" stroke="none" text-anchor="middle" data-name="DcentKlaytn">DcentKlaytn</text></a>
+
+</g>
+</g>
+<g transform="translate(2492, 344)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DcentKlaytn">
+<text x="0.0" y="13.5" stroke="none" data-name="DcentKlaytn">+isDcentWallet</text>
+
+</g>
+</g>
+<g transform="translate(2492, 375)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DcentKlaytn">
+
+</g>
+</g>
+</g>
+<g data-name="DcentKlaytnInjectedWindow">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="DcentKlaytnInjectedWindow">
+<rect x="1982.0" y="313.0" height="70.0" width="236.0" data-name="DcentKlaytnInjectedWindow"></rect>
+<path d="M1982.0 344.0 L2218.0 344.0" fill="none" data-name="DcentKlaytnInjectedWindow"></path>
+<path d="M1982.0 375.0 L2218.0 375.0" fill="none" data-name="DcentKlaytnInjectedWindow"></path>
+</g>
+<g transform="translate(1982, 313)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DcentKlaytnInjectedWindow">
+<a id=".DcentKlaytnInjectedWindow" xlink:href=""><text x="110.0" y="13.5" stroke="none" text-anchor="middle" data-name="DcentKlaytnInjectedWindow">DcentKlaytnInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(1982, 344)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DcentKlaytnInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="DcentKlaytnInjectedWindow">+klaytn</text>
+
+</g>
+</g>
+<g transform="translate(1982, 375)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DcentKlaytnInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DcentKlaytnInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="EthereumConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="EthereumConnector">
+<rect x="1863.0" y="475.0" height="303.0" width="178.0" data-name="EthereumConnector"></rect>
+<path d="M1863.0 506.0 L2041.0 506.0" fill="none" data-name="EthereumConnector"></path>
+<path d="M1863.0 732.0 L2041.0 732.0" fill="none" data-name="EthereumConnector"></path>
+</g>
+<g transform="translate(1863, 475)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="EthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="EthereumConnector">
+<a id=".EthereumConnector" xlink:href=""><text x="81.0" y="13.5" stroke="none" text-anchor="middle" data-name="EthereumConnector">EthereumConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(1863, 506)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EthereumConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="EthereumConnector">-web3Inst</text>
+<text x="0.0" y="28.5" stroke="none" data-name="EthereumConnector">+currentAddress</text>
+<text x="0.0" y="43.5" stroke="none" data-name="EthereumConnector">+chainId</text>
+<text x="0.0" y="58.5" stroke="none" data-name="EthereumConnector">#static instance</text>
+<text x="0.0" y="73.5" stroke="none" data-name="EthereumConnector">#contractEncoder</text>
+<text x="0.0" y="88.5" stroke="none" data-name="EthereumConnector">#ethereum</text>
+<text x="0.0" y="103.5" stroke="none" data-name="EthereumConnector">+isUnlocked</text>
+<text x="0.0" y="118.5" stroke="none" data-name="EthereumConnector">+activate</text>
+<text x="0.0" y="133.5" stroke="none" data-name="EthereumConnector">+sign</text>
+<text x="0.0" y="148.5" stroke="none" data-name="EthereumConnector">+sendTransaction</text>
+<text x="0.0" y="163.5" stroke="none" data-name="EthereumConnector">+encodeContract</text>
+<text x="0.0" y="178.5" stroke="none" data-name="EthereumConnector">-setCurrentAddress</text>
+<text x="0.0" y="193.5" stroke="none" data-name="EthereumConnector">-setChainId</text>
+<text x="0.0" y="208.5" stroke="none" data-name="EthereumConnector">+restoreState</text>
+
+</g>
+</g>
+<g transform="translate(1863, 732)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EthereumConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EthereumConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="EthereumConnector">+static getInstance()</text>
+<text x="0.0" y="28.5" stroke="none" data-name="EthereumConnector">+static create()</text>
+
+</g>
+</g>
+</g>
+<g data-name="KaikasConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="KaikasConnector">
+<rect x="2603.0" y="991.0" height="138.0" width="178.0" data-name="KaikasConnector"></rect>
+<path d="M2603.0 1022.0 L2781.0 1022.0" fill="none" data-name="KaikasConnector"></path>
+<path d="M2603.0 1083.0 L2781.0 1083.0" fill="none" data-name="KaikasConnector"></path>
+</g>
+<g transform="translate(2603, 991)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KaikasConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KaikasConnector">
+<a id=".KaikasConnector" xlink:href=""><text x="81.0" y="13.5" stroke="none" text-anchor="middle" data-name="KaikasConnector">KaikasConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(2603, 1022)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasConnector">+hasExtension</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KaikasConnector">+getInstallLink</text>
+<text x="0.0" y="43.5" stroke="none" data-name="KaikasConnector">+isUnlocked</text>
+
+</g>
+</g>
+<g transform="translate(2603, 1083)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasConnector">+static getInstance()</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KaikasConnector">+static create()</text>
+
+</g>
+</g>
+</g>
+<g data-name="KaikasKlaytn">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="KaikasKlaytn">
+<rect x="2666.0" y="305.0" height="85.0" width="118.0" data-name="KaikasKlaytn"></rect>
+<path d="M2666.0 336.0 L2784.0 336.0" fill="none" data-name="KaikasKlaytn"></path>
+<path d="M2666.0 382.0 L2784.0 382.0" fill="none" data-name="KaikasKlaytn"></path>
+</g>
+<g transform="translate(2666, 305)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KaikasKlaytn">
+<a id=".KaikasKlaytn" xlink:href=""><text x="51.0" y="13.5" stroke="none" text-anchor="middle" data-name="KaikasKlaytn">KaikasKlaytn</text></a>
+
+</g>
+</g>
+<g transform="translate(2666, 336)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasKlaytn">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasKlaytn">+isKaikas</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KaikasKlaytn">+_kaikas</text>
+
+</g>
+</g>
+<g transform="translate(2666, 382)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasKlaytn">
+<g transform="translate(8, 8)" fill="#33322E" data-name="KaikasKlaytn">
+
+</g>
+</g>
+</g>
+<g data-name="KaikasInjectedWindow">
+<g fill="#8f8" stroke="#33322E" stroke-dasharray="6 6" data-name="KaikasInjectedWindow">
+<rect x="2258.0" y="313.0" height="70.0" width="194.0" data-name="KaikasInjectedWindow"></rect>
+<path d="M2258.0 344.0 L2452.0 344.0" fill="none" data-name="KaikasInjectedWindow"></path>
+<path d="M2258.0 375.0 L2452.0 375.0" fill="none" data-name="KaikasInjectedWindow"></path>
+</g>
+<g transform="translate(2258, 313)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KaikasInjectedWindow">
+<a id=".KaikasInjectedWindow" xlink:href=""><text x="89.0" y="13.5" stroke="none" text-anchor="middle" data-name="KaikasInjectedWindow">KaikasInjectedWindow</text></a>
+
+</g>
+</g>
+<g transform="translate(2258, 344)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KaikasInjectedWindow">
+<text x="0.0" y="13.5" stroke="none" data-name="KaikasInjectedWindow">+klaytn</text>
+
+</g>
+</g>
+<g transform="translate(2258, 375)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KaikasInjectedWindow">
+<g transform="translate(8, 8)" fill="#33322E" data-name="KaikasInjectedWindow">
+
+</g>
+</g>
+</g>
+<g data-name="KlaytnConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="KlaytnConnector">
+<rect x="2998.0" y="483.0" height="288.0" width="178.0" data-name="KlaytnConnector"></rect>
+<path d="M2998.0 514.0 L3176.0 514.0" fill="none" data-name="KlaytnConnector"></path>
+<path d="M2998.0 725.0 L3176.0 725.0" fill="none" data-name="KlaytnConnector"></path>
+</g>
+<g transform="translate(2998, 483)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KlaytnConnector">
+<a id=".KlaytnConnector" xlink:href=""><text x="81.0" y="13.5" stroke="none" text-anchor="middle" data-name="KlaytnConnector">KlaytnConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(2998, 514)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlaytnConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlaytnConnector">+currentAddress</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlaytnConnector">+chainId</text>
+<text x="0.0" y="43.5" stroke="none" data-name="KlaytnConnector">#caverInst</text>
+<text x="0.0" y="58.5" stroke="none" data-name="KlaytnConnector">#static instance</text>
+<text x="0.0" y="73.5" stroke="none" data-name="KlaytnConnector">#contractEncoder</text>
+<text x="0.0" y="88.5" stroke="none" data-name="KlaytnConnector">+isUnlocked</text>
+<text x="0.0" y="103.5" stroke="none" data-name="KlaytnConnector">+activate</text>
+<text x="0.0" y="118.5" stroke="none" data-name="KlaytnConnector">+sign</text>
+<text x="0.0" y="133.5" stroke="none" data-name="KlaytnConnector">+sendTransaction</text>
+<text x="0.0" y="148.5" stroke="none" data-name="KlaytnConnector">+encodeContract</text>
+<text x="0.0" y="163.5" stroke="none" data-name="KlaytnConnector">-setCurrentAddress</text>
+<text x="0.0" y="178.5" stroke="none" data-name="KlaytnConnector">-setChainId</text>
+<text x="0.0" y="193.5" stroke="none" data-name="KlaytnConnector">+restoreState</text>
+
+</g>
+</g>
+<g transform="translate(2998, 725)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlaytnConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlaytnConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlaytnConnector">+static getInstance()</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlaytnConnector">+static create()</text>
+
+</g>
+</g>
+</g>
+<g data-name="KlipConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="KlipConnector">
+<rect x="2114.0" y="818.0" height="483.0" width="231.0" data-name="KlipConnector"></rect>
+<path d="M2114.0 849.0 L2345.0 849.0" fill="none" data-name="KlipConnector"></path>
+<path d="M2114.0 1255.0 L2345.0 1255.0" fill="none" data-name="KlipConnector"></path>
+</g>
+<g transform="translate(2114, 818)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KlipConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KlipConnector">
+<a id=".KlipConnector" xlink:href=""><text x="107.5" y="13.5" stroke="none" text-anchor="middle" data-name="KlipConnector">KlipConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(2114, 849)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlipConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlipConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlipConnector">+chainId</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlipConnector">+currentAddress</text>
+<text x="0.0" y="43.5" stroke="none" data-name="KlipConnector">-contractEncoder</text>
+<text x="0.0" y="58.5" stroke="none" data-name="KlipConnector">-bAppName</text>
+<text x="0.0" y="73.5" stroke="none" data-name="KlipConnector">-static instance</text>
+<text x="0.0" y="88.5" stroke="none" data-name="KlipConnector">+requestKey</text>
+<text x="0.0" y="103.5" stroke="none" data-name="KlipConnector">+deeplink</text>
+<text x="0.0" y="118.5" stroke="none" data-name="KlipConnector">+qrCode</text>
+<text x="0.0" y="133.5" stroke="none" data-name="KlipConnector">+qrCodeSetCallback</text>
+<text x="0.0" y="148.5" stroke="none" data-name="KlipConnector">+deeplinkSetCallback</text>
+<text x="0.0" y="163.5" stroke="none" data-name="KlipConnector">-activateIntervalHandler</text>
+<text x="0.0" y="178.5" stroke="none" data-name="KlipConnector">-transactionIntervalHandler</text>
+<text x="0.0" y="193.5" stroke="none" data-name="KlipConnector">+isUnlocked</text>
+<text x="0.0" y="208.5" stroke="none" data-name="KlipConnector">+activate</text>
+<text x="0.0" y="223.5" stroke="none" data-name="KlipConnector">+abortPendingActivation</text>
+<text x="0.0" y="238.5" stroke="none" data-name="KlipConnector">+sign</text>
+<text x="0.0" y="253.5" stroke="none" data-name="KlipConnector">+sendTransaction</text>
+<text x="0.0" y="268.5" stroke="none" data-name="KlipConnector">+abortPendingTransaction</text>
+<text x="0.0" y="283.5" stroke="none" data-name="KlipConnector">+encodeContract</text>
+<text x="0.0" y="298.5" stroke="none" data-name="KlipConnector">-setRequestKey</text>
+<text x="0.0" y="313.5" stroke="none" data-name="KlipConnector">-clearLinkAndCode</text>
+<text x="0.0" y="328.5" stroke="none" data-name="KlipConnector">-setCurrentAddress</text>
+<text x="0.0" y="343.5" stroke="none" data-name="KlipConnector">-setChainId</text>
+<text x="0.0" y="358.5" stroke="none" data-name="KlipConnector">+setQrCodeSetCallback</text>
+<text x="0.0" y="373.5" stroke="none" data-name="KlipConnector">+setDeeplinkSetCallback</text>
+<text x="0.0" y="388.5" stroke="none" data-name="KlipConnector">+restoreState</text>
+
+</g>
+</g>
+<g transform="translate(2114, 1255)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KlipConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KlipConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="KlipConnector">+static getInstance()</text>
+<text x="0.0" y="28.5" stroke="none" data-name="KlipConnector">+static create()</text>
+
+</g>
+</g>
+</g>
+<g data-name="MetamaskConnector">
+<g fill="#eee8d5" stroke="#33322E" data-name="MetamaskConnector">
+<rect x="1001.0" y="946.0" height="228.0" width="225.0" data-name="MetamaskConnector"></rect>
+<path d="M1001.0 977.0 L1226.0 977.0" fill="none" data-name="MetamaskConnector"></path>
+<path d="M1001.0 1128.0 L1226.0 1128.0" fill="none" data-name="MetamaskConnector"></path>
+</g>
+<g transform="translate(1001, 946)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MetamaskConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetamaskConnector">
+<a id=".MetamaskConnector" xlink:href=""><text x="104.5" y="13.5" stroke="none" text-anchor="middle" data-name="MetamaskConnector">MetamaskConnector</text></a>
+
+</g>
+</g>
+<g transform="translate(1001, 977)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskConnector">+deeplink</text>
+<text x="0.0" y="28.5" stroke="none" data-name="MetamaskConnector">+deeplinkSetCallback</text>
+<text x="0.0" y="43.5" stroke="none" data-name="MetamaskConnector">+hasExtension</text>
+<text x="0.0" y="58.5" stroke="none" data-name="MetamaskConnector">+getInstallLink</text>
+<text x="0.0" y="73.5" stroke="none" data-name="MetamaskConnector">+isUnlocked</text>
+<text x="0.0" y="88.5" stroke="none" data-name="MetamaskConnector">+setDeeplinkSetCallback</text>
+<text x="0.0" y="103.5" stroke="none" data-name="MetamaskConnector">-setDeepLink</text>
+<text x="0.0" y="118.5" stroke="none" data-name="MetamaskConnector">+abortPendingActivation</text>
+<text x="0.0" y="133.5" stroke="none" data-name="MetamaskConnector">+abortPendingTransaction</text>
+
+</g>
+</g>
+<g transform="translate(1001, 1128)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetamaskConnector">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetamaskConnector">
+<text x="0.0" y="13.5" stroke="none" data-name="MetamaskConnector">+static getInstance()</text>
+<text x="0.0" y="28.5" stroke="none" data-name="MetamaskConnector">+static create()</text>
+
+</g>
+</g>
+</g>
+<g data-name="IpcProvider">
+<g fill="#eee8d5" stroke="#33322E" data-name="IpcProvider">
+<rect x="735.0" y="95.0" height="31.0" width="106.0" data-name="IpcProvider"></rect>
+</g>
+<g transform="translate(735, 95)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="IpcProvider">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IpcProvider">
+<text x="45.0" y="13.5" stroke="none" text-anchor="middle" data-name="IpcProvider">IpcProvider</text>
+
+</g>
+</g>
+</g>
+<g data-name="Ethereum">
+<g fill="#eee8d5" stroke="#33322E" data-name="Ethereum">
+<rect x="742.0" y="332.0" height="31.0" width="92.0" data-name="Ethereum"></rect>
+</g>
+<g transform="translate(742, 332)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Ethereum">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Ethereum">
+<a id=".Ethereum" xlink:href=""><text x="38.0" y="13.5" stroke="none" text-anchor="middle" data-name="Ethereum">Ethereum</text></a>
+
+</g>
+</g>
+</g>
+<g data-name="Window">
+<g fill="#eee8d5" stroke="#33322E" data-name="Window">
+<rect x="1253.0" y="95.0" height="31.0" width="78.0" data-name="Window"></rect>
+</g>
+<g transform="translate(1253, 95)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Window">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Window">
+<text x="31.0" y="13.5" stroke="none" text-anchor="middle" data-name="Window">Window</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
